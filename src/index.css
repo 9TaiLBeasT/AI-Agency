@@ -13,7 +13,7 @@ html, body {
   padding: 0;
   background-color: #000000;
   overflow-x: hidden;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.87);
@@ -337,4 +337,11 @@ button:focus-visible {
       var(--color-5) var(--stop-5)
     );
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
+}
+code, pre, kbd, samp {
+  font-family: 'Fira Code', monospace;
 }
