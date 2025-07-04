@@ -12,35 +12,38 @@ import './App.css';
 function App() {
   return (
     <div className="min-h-screen bg-black w-full overflow-x-hidden">
-      <AnimeNavBarDemo />
+      {/* Navigation - Fixed position, doesn't take up space in flow */}
+      <div className="relative z-50">
+        <AnimeNavBarDemo />
+      </div>
       
-      {/* Hero Section - Added top padding to avoid navbar collision */}
-      <section id="home" className="w-full pt-20">
+      {/* Hero Section - Full height with proper spacing */}
+      <section id="home" className="relative w-full min-h-screen pt-0 pb-0 overflow-hidden">
         <LampDemo />
       </section>
 
-      {/* Services Section - Reduced top margin */}
-      <section id="services" className="w-full -mt-32">
+      {/* Services Section - Proper spacing */}
+      <section id="services" className="w-full py-16 bg-black">
         <Services />
       </section>
 
       {/* Features Section */}
-      <section id="features" className="w-full">
+      <section id="features" className="w-full py-16 bg-black">
         <Features />
       </section>
 
       {/* About Section */}
-      <section id="about" className="w-full">
+      <section id="about" className="w-full py-16 bg-black">
         <About />
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="w-full">
+      <section id="testimonials" className="w-full py-16 bg-black">
         <Testimonials />
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="w-full">
+      <section id="contact" className="w-full py-16 bg-black">
         <Contact />
       </section>
 

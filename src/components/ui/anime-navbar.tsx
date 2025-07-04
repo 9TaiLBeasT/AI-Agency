@@ -11,7 +11,7 @@ function cn(...inputs: (string | undefined | null | boolean)[]) {
 interface NavItem {
   name: string
   url: string
-  icon: LucideIcon
+  icon: typeof LucideIcon
 }
 
 interface NavBarProps {
@@ -52,7 +52,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
 
   return (
     <>
-      <style jsx global>{`
+      <style>{`
         @keyframes shine {
           0% {
             transform: translateX(-100%);
@@ -65,7 +65,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
           }
         }
       `}</style>
-      <div className="fixed top-5 left-0 right-0 z-[9999]">
+      <div className="fixed top-0 left-0 right-0 z-[9999] pt-5">
         <div className="flex justify-center pt-6">
           <motion.div 
             className="flex items-center gap-3 bg-black/50 border border-white/10 backdrop-blur-lg py-2 px-2 rounded-full shadow-lg relative"
