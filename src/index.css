@@ -11,12 +11,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #f8fafc 100%);
   overflow-x: hidden;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(30, 41, 59, 0.9);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +26,7 @@ html, body {
 #root {
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #f8fafc 100%);
   min-height: 100vh;
 }
 
@@ -51,7 +51,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f8fafc;
+  color: #1e293b;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -65,30 +66,30 @@ button:focus-visible {
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 248 250 252;
+    --foreground: 30 41 59;
+    --card: 255 255 255;
+    --card-foreground: 30 41 59;
+    --popover: 255 255 255;
+    --popover-foreground: 30 41 59;
+    --primary: 167 243 208;
+    --primary-foreground: 6 78 59;
+    --secondary: 221 214 254;
+    --secondary-foreground: 91 33 182;
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+    --accent: 191 219 254;
+    --accent-foreground: 30 58 138;
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 167 243 208;
+    --chart-1: 167 243 208;
+    --chart-2: 196 181 253;
+    --chart-3: 191 219 254;
+    --chart-4: 252 231 243;
+    --chart-5: 254 215 226;
     --radius: 0.5rem;
   }
 
@@ -118,31 +119,31 @@ button:focus-visible {
 
   @property --color-1 {
     syntax: '<color>';
-    initial-value: #000;
+    initial-value: #f8fafc;
     inherits: false;
   }
 
   @property --color-2 {
     syntax: '<color>';
-    initial-value: #001a00;
+    initial-value: #a7f3d0;
     inherits: false;
   }
 
   @property --color-3 {
     syntax: '<color>';
-    initial-value: #003300;
+    initial-value: #c4b5fd;
     inherits: false;
   }
 
   @property --color-4 {
     syntax: '<color>';
-    initial-value: #004d00;
+    initial-value: #bfdbfe;
     inherits: false;
   }
 
   @property --color-5 {
     syntax: '<color>';
-    initial-value: #006600;
+    initial-value: #fce7f3;
     inherits: false;
   }
 
@@ -154,13 +155,13 @@ button:focus-visible {
 
   @property --border-color-1 {
     syntax: '<color>';
-    initial-value: hsla(120, 75%, 60%, 0.2);
+    initial-value: hsla(158, 64%, 52%, 0.3);
     inherits: true;
   }
 
   @property --border-color-2 {
     syntax: '<color>';
-    initial-value: hsla(120, 75%, 40%, 0.75);
+    initial-value: hsla(262, 83%, 58%, 0.4);
     inherits: true;
   }
 
@@ -200,7 +201,8 @@ button:focus-visible {
     @apply border-border;
   }
   body {
-    @apply bg-black text-foreground;
+    @apply text-foreground;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #f8fafc 100%);
   }
 }
 
@@ -215,6 +217,8 @@ button:focus-visible {
       var(--color-4) var(--stop-4),
       var(--color-5) var(--stop-5)
     );
+    color: #1e293b !important; /* Ensure dark text for visibility */
+    font-weight: 600 !important; /* Make text bolder */
     transition:
       --pos-x 0.5s,
       --pos-y 0.5s,
@@ -256,30 +260,31 @@ button:focus-visible {
     --pos-y: 91.51%;
     --spread-x: 120.24%;
     --spread-y: 103.18%;
-    --color-1: #00ff00;
-    --color-2: #00cc00;
-    --color-3: #009900;
-    --color-4: #006600;
-    --color-5: #003300;
+    --color-1: #a7f3d0;
+    --color-2: #6ee7b7;
+    --color-3: #c4b5fd;
+    --color-4: #bfdbfe;
+    --color-5: #fce7f3;
     --border-angle: 190deg;
-    --border-color-1: hsla(120, 78%, 90%, 0.1);
-    --border-color-2: hsla(120, 75%, 90%, 0.6);
+    --border-color-1: hsla(158, 64%, 52%, 0.4);
+    --border-color-2: hsla(262, 83%, 58%, 0.6);
     --stop-1: 0%;
     --stop-2: 8.8%;
     --stop-3: 21.44%;
     --stop-4: 71.34%;
     --stop-5: 85.76%;
+    color: #1e293b !important; /* Keep dark text on hover */
   }
 
   .gradient-button-secondary {
     --color-1: #000;
-    --color-2: #001100;
-    --color-3: #002200;
-    --color-4: #003300;
-    --color-5: #004400;
+    --color-2: #1a0033;
+    --color-3: #330066;
+    --color-4: #4d0099;
+    --color-5: #6366f1;
     --border-angle: 200deg;
-    --border-color-1: hsla(120, 75%, 90%, 0.6);
-    --border-color-2: hsla(120, 50%, 90%, 0.15);
+    --border-color-1: hsla(250, 75%, 90%, 0.6);
+    --border-color-2: hsla(250, 50%, 90%, 0.15);
   }
 
   .gradient-button-secondary:hover {
@@ -288,18 +293,18 @@ button:focus-visible {
     --spread-x: 110.24%;
     --spread-y: 110.2%;
     --color-1: #000;
-    --color-2: #00ff00;
-    --color-3: #00cc00;
-    --color-4: #009900;
-    --color-5: #006600;
+    --color-2: #6366f1;
+    --color-3: #3b82f6;
+    --color-4: #f97316;
+    --color-5: #8b5cf6;
     --stop-1: 0%;
     --stop-2: 10%;
     --stop-3: 35.44%;
     --stop-4: 71.34%;
     --stop-5: 90.76%;
     --border-angle: 210deg;
-    --border-color-1: hsla(120, 75%, 90%, 0.2);
-    --border-color-2: hsla(120, 50%, 90%, 0.75);
+    --border-color-1: hsla(250, 75%, 90%, 0.2);
+    --border-color-2: hsla(250, 50%, 90%, 0.75);
   }
 
   .gradient-button-outline {
@@ -309,11 +314,12 @@ button:focus-visible {
     --color-4: transparent;
     --color-5: transparent;
     --border-angle: 180deg;
-    --border-color-1: hsla(120, 75%, 60%, 0.8);
-    --border-color-2: hsla(120, 75%, 40%, 0.8);
+    --border-color-1: hsla(250, 75%, 60%, 0.8);
+    --border-color-2: hsla(250, 75%, 40%, 0.8);
     background: transparent;
     border: 2px solid transparent;
     background-clip: padding-box;
+    color: #1e293b !important; /* Force dark text for visibility */
   }
 
   .gradient-button-outline::before {
@@ -321,13 +327,13 @@ button:focus-visible {
   }
 
   .gradient-button-outline:hover {
-    --color-1: #000;
-    --color-2: #001100;
-    --color-3: #002200;
-    --color-4: #003300;
-    --color-5: #004400;
-    --border-color-1: hsla(120, 75%, 70%, 1);
-    --border-color-2: hsla(120, 75%, 50%, 1);
+    --color-1: #f8fafc;
+    --color-2: #a7f3d0;
+    --color-3: #c4b5fd;
+    --color-4: #bfdbfe;
+    --color-5: #fce7f3;
+    --border-color-1: hsla(250, 75%, 70%, 1);
+    --border-color-2: hsla(250, 75%, 50%, 1);
     background: radial-gradient(
       var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
       var(--color-1) var(--stop-1),
@@ -336,5 +342,6 @@ button:focus-visible {
       var(--color-4) var(--stop-4),
       var(--color-5) var(--stop-5)
     );
+    color: #1e293b !important; /* Keep dark text on hover */
   }
 }

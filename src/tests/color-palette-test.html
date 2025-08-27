@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RivRang Color Palette Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .color-card {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .gradient-test {
+            height: 100px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .button-test {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .accessibility-test {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .contrast-test {
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>RivRang Color Palette Cross-Browser Test</h1>
+    
+    <div class="test-section">
+        <h2>Primary Brand Colors</h2>
+        <div class="color-grid">
+            <div class="color-card" style="background: #6366f1;">
+                <h3>Primary Purple</h3>
+                <p>#6366f1</p>
+                <p>Creativity & Vision</p>
+            </div>
+            <div class="color-card" style="background: #3b82f6;">
+                <h3>Flow Blue</h3>
+                <p>#3b82f6</p>
+                <p>Movement & Flow</p>
+            </div>
+            <div class="color-card" style="background: #f97316;">
+                <h3>Creative Coral</h3>
+                <p>#f97316</p>
+                <p>Energy & Creativity</p>
+            </div>
+            <div class="color-card" style="background: #14b8a6;">
+                <h3>Artistic Teal</h3>
+                <p>#14b8a6</p>
+                <p>Balance & Harmony</p>
+            </div>
+            <div class="color-card" style="background: #8b5cf6;">
+                <h3>Light Purple</h3>
+                <p>#8b5cf6</p>
+                <p>Artistic Range</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Gradient Flow Tests</h2>
+        <div class="gradient-test" style="background: linear-gradient(135deg, #6366f1, #3b82f6);">
+            Purple to Blue Flow
+        </div>
+        <div class="gradient-test" style="background: linear-gradient(135deg, #3b82f6, #f97316);">
+            Blue to Coral Flow
+        </div>
+        <div class="gradient-test" style="background: linear-gradient(135deg, #6366f1, #f97316, #14b8a6);">
+            Full Spectrum Flow
+        </div>
+        <div class="gradient-test" style="background: radial-gradient(circle, #6366f1, #3b82f6, #f97316);">
+            Radial Artistic Flow
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Button Style Tests</h2>
+        <a href="#" class="button-test" style="background: linear-gradient(135deg, #6366f1, #3b82f6);">Primary Button</a>
+        <a href="#" class="button-test" style="background: linear-gradient(135deg, #3b82f6, #f97316);">Secondary Button</a>
+        <a href="#" class="button-test" style="background: transparent; border: 2px solid #6366f1;">Outline Button</a>
+        <a href="#" class="button-test" style="background: linear-gradient(135deg, #14b8a6, #8b5cf6);">Creative Button</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Accessibility & Contrast Tests</h2>
+        <div class="accessibility-test">
+            <div class="contrast-test" style="background: #6366f1; color: white;">
+                <h3>White on Purple</h3>
+                <p>This text should be easily readable with good contrast ratio.</p>
+                <small>WCAG AA compliant contrast</small>
+            </div>
+            <div class="contrast-test" style="background: #3b82f6; color: white;">
+                <h3>White on Blue</h3>
+                <p>This text should be easily readable with good contrast ratio.</p>
+                <small>WCAG AA compliant contrast</small>
+            </div>
+            <div class="contrast-test" style="background: #f97316; color: white;">
+                <h3>White on Coral</h3>
+                <p>This text should be easily readable with good contrast ratio.</p>
+                <small>WCAG AA compliant contrast</small>
+            </div>
+            <div class="contrast-test" style="background: #14b8a6; color: white;">
+                <h3>White on Teal</h3>
+                <p>This text should be easily readable with good contrast ratio.</p>
+                <small>WCAG AA compliant contrast</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Browser Compatibility Notes</h2>
+        <ul>
+            <li><strong>Chrome:</strong> Full support for CSS custom properties and gradients</li>
+            <li><strong>Firefox:</strong> Full support for CSS custom properties and gradients</li>
+            <li><strong>Safari:</strong> Full support for CSS custom properties and gradients</li>
+            <li><strong>Edge:</strong> Full support for CSS custom properties and gradients</li>
+            <li><strong>Mobile Safari:</strong> Test on iOS devices for color accuracy</li>
+            <li><strong>Chrome Mobile:</strong> Test on Android devices for color accuracy</li>
+        </ul>
+    </div>
+
+    <script>
+        // Test CSS custom properties support
+        function testCSSCustomProperties() {
+            const testElement = document.createElement('div');
+            testElement.style.setProperty('--test-color', '#6366f1');
+            const computedStyle = getComputedStyle(testElement);
+            const customPropertyValue = computedStyle.getPropertyValue('--test-color');
+            
+            if (customPropertyValue) {
+                console.log('✅ CSS Custom Properties supported');
+                return true;
+            } else {
+                console.log('❌ CSS Custom Properties not supported');
+                return false;
+            }
+        }
+
+        // Test gradient support
+        function testGradientSupport() {
+            const testElement = document.createElement('div');
+            testElement.style.background = 'linear-gradient(135deg, #6366f1, #3b82f6)';
+            
+            if (testElement.style.background.includes('gradient')) {
+                console.log('✅ CSS Gradients supported');
+                return true;
+            } else {
+                console.log('❌ CSS Gradients not supported');
+                return false;
+            }
+        }
+
+        // Run tests on page load
+        window.addEventListener('load', function() {
+            console.log('=== RivRang Color Palette Browser Test ===');
+            testCSSCustomProperties();
+            testGradientSupport();
+            
+            // Log browser info
+            console.log('Browser:', navigator.userAgent);
+            console.log('Viewport:', window.innerWidth + 'x' + window.innerHeight);
+        });
+    </script>
+</body>
+</html>

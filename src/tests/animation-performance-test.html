@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RivRang Animation Performance Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .test-section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        
+        .performance-metrics {
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        /* Artistic Flow Animations */
+        .flowing-particles {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #6366f1, #3b82f6, #f97316);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: flowParticle 8s linear infinite;
+        }
+        
+        @keyframes flowParticle {
+            0% {
+                transform: translateX(-10px) translateY(0px) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateX(0px) translateY(-10px) scale(1);
+            }
+            50% {
+                transform: translateX(50vw) translateY(-20px) scale(1.2);
+            }
+            90% {
+                opacity: 1;
+                transform: translateX(100vw) translateY(-10px) scale(1);
+            }
+            100% {
+                transform: translateX(110vw) translateY(0px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        /* Gradient Flow Animation */
+        .gradient-flow {
+            height: 100px;
+            background: linear-gradient(
+                270deg,
+                #6366f1 0%,
+                #3b82f6 25%,
+                #f97316 50%,
+                #14b8a6 75%,
+                #8b5cf6 100%
+            );
+            background-size: 400% 100%;
+            animation: gradientFlow 6s ease-in-out infinite;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Organic Shape Animation */
+        .organic-shape {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #6366f1, #f97316);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: organicMorph 4s ease-in-out infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes organicMorph {
+            0%, 100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+                transform: rotate(0deg) scale(1);
+            }
+            25% {
+                border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+                transform: rotate(90deg) scale(1.1);
+            }
+            50% {
+                border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+                transform: rotate(180deg) scale(0.9);
+            }
+            75% {
+                border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+                transform: rotate(270deg) scale(1.05);
+            }
+        }
+        
+        /* Creative Button Animation */
+        .creative-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creative-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .creative-button:hover::before {
+            left: 100%;
+        }
+        
+        .creative-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Performance Test Controls */
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .control-button {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .control-button:hover {
+            background: #555;
+        }
+        
+        .control-button.active {
+            background: #6366f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>RivRang Animation Performance Test</h1>
+    
+    <div class="performance-metrics" id="metrics">
+        <div>FPS: <span id="fps">--</span></div>
+        <div>Frame Time: <span id="frameTime">--</span>ms</div>
+        <div>Memory Usage: <span id="memory">--</span>MB</div>
+        <div>Animation Count: <span id="animCount">0</span></div>
+    </div>
+    
+    <div class="controls">
+        <button class="control-button" onclick="startPerformanceTest()">Start Performance Test</button>
+        <button class="control-button" onclick="stopPerformanceTest()">Stop Test</button>
+        <button class="control-button" onclick="addParticles(50)">Add 50 Particles</button>
+        <button class="control-button" onclick="removeParticles()">Remove Particles</button>
+        <button class="control-button" onclick="testResponsive()">Test Responsive</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Flowing Particles Animation</h2>
+        <div class="flowing-particles" id="particleContainer">
+            <!-- Particles will be added dynamically -->
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Gradient Flow Animation</h2>
+        <div class="gradient-flow"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Organic Shape Morphing</h2>
+        <div class="organic-shape"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Interactive Creative Buttons</h2>
+        <a href="#" class="creative-button">Start Your Project</a>
+        <a href="#" class="creative-button">View Portfolio</a>
+        <a href="#" class="creative-button">Get Quote</a>
+    </div>
+    
+    <div class="test-section">
+        <h2>Performance Test Results</h2>
+        <div id="testResults">
+            <p>Click "Start Performance Test" to begin monitoring animation performance.</p>
+        </div>
+    </div>
+
+    <script>
+        let performanceMonitor = null;
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let animationCount = 0;
+        
+        // Performance monitoring
+        function startPerformanceTest() {
+            if (performanceMonitor) return;
+            
+            console.log('🚀 Starting animation performance test...');
+            
+            performanceMonitor = setInterval(() => {
+                const now = performance.now();
+                const delta = now - lastTime;
+                frameCount++;
+                
+                if (frameCount % 60 === 0) { // Update every 60 frames
+                    const fps = Math.round(1000 / (delta / 60));
+                    const frameTime = Math.round(delta / 60 * 100) / 100;
+                    
+                    document.getElementById('fps').textContent = fps;
+                    document.getElementById('frameTime').textContent = frameTime;
+                    
+                    // Memory usage (if available)
+                    if (performance.memory) {
+                        const memoryMB = Math.round(performance.memory.usedJSHeapSize / 1024 / 1024);
+                        document.getElementById('memory').textContent = memoryMB;
+                    }
+                    
+                    document.getElementById('animCount').textContent = animationCount;
+                    
+                    // Log performance warnings
+                    if (fps < 30) {
+                        console.warn('⚠️ Low FPS detected:', fps);
+                    }
+                    if (frameTime > 16.67) {
+                        console.warn('⚠️ High frame time detected:', frameTime + 'ms');
+                    }
+                }
+                
+                lastTime = now;
+            }, 16); // ~60fps monitoring
+            
+            // Add initial particles for testing
+            addParticles(20);
+        }
+        
+        function stopPerformanceTest() {
+            if (performanceMonitor) {
+                clearInterval(performanceMonitor);
+                performanceMonitor = null;
+                console.log('🛑 Performance test stopped');
+            }
+        }
+        
+        function addParticles(count) {
+            const container = document.getElementById('particleContainer');
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.top = Math.random() * 200 + 'px';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                container.appendChild(particle);
+                animationCount++;
+            }
+            
+            console.log(`➕ Added ${count} particles. Total: ${animationCount}`);
+        }
+        
+        function removeParticles() {
+            const container = document.getElementById('particleContainer');
+            container.innerHTML = '';
+            animationCount = 0;
+            console.log('🗑️ All particles removed');
+        }
+        
+        function testResponsive() {
+            const sizes = [
+                { width: 1920, height: 1080, name: 'Desktop Large' },
+                { width: 1366, height: 768, name: 'Desktop Medium' },
+                { width: 768, height: 1024, name: 'Tablet' },
+                { width: 375, height: 667, name: 'Mobile' }
+            ];
+            
+            let currentSize = 0;
+            
+            function cycleSize() {
+                if (currentSize < sizes.size) {
+                    const size = sizes[currentSize];
+                    console.log(`📱 Testing ${size.name}: ${size.width}x${size.height}`);
+                    
+                    // Simulate viewport change
+                    document.body.style.width = size.width + 'px';
+                    document.body.style.maxWidth = size.width + 'px';
+                    
+                    currentSize++;
+                    setTimeout(cycleSize, 2000);
+                } else {
+                    document.body.style.width = '';
+                    document.body.style.maxWidth = '';
+                    console.log('✅ Responsive test completed');
+                }
+            }
+            
+            cycleSize();
+        }
+        
+        // Test animation smoothness
+        function testAnimationSmootness() {
+            const testElement = document.querySelector('.organic-shape');
+            let frameDrops = 0;
+            let totalFrames = 0;
+            
+            const observer = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.duration > 16.67) { // Frame took longer than 60fps
+                        frameDrops++;
+                    }
+                    totalFrames++;
+                }
+            });
+            
+            observer.observe({ entryTypes: ['measure'] });
+            
+            setTimeout(() => {
+                observer.disconnect();
+                const smoothness = ((totalFrames - frameDrops) / totalFrames * 100).toFixed(1);
+                console.log(`🎯 Animation smoothness: ${smoothness}%`);
+                
+                const results = document.getElementById('testResults');
+                results.innerHTML += `<p><strong>Animation Smoothness:</strong> ${smoothness}% (${frameDrops} frame drops out of ${totalFrames} frames)</p>`;
+            }, 10000);
+        }
+        
+        // Browser compatibility checks
+        function checkBrowserSupport() {
+            const features = {
+                'CSS Custom Properties': CSS.supports('color', 'var(--test)'),
+                'CSS Animations': CSS.supports('animation', 'test 1s'),
+                'CSS Transforms': CSS.supports('transform', 'translateX(10px)'),
+                'CSS Gradients': CSS.supports('background', 'linear-gradient(red, blue)'),
+                'Intersection Observer': 'IntersectionObserver' in window,
+                'Performance API': 'performance' in window
+            };
+            
+            console.log('🔍 Browser Support Check:');
+            Object.entries(features).forEach(([feature, supported]) => {
+                console.log(`${supported ? '✅' : '❌'} ${feature}: ${supported}`);
+            });
+            
+            return features;
+        }
+        
+        // Initialize tests
+        window.addEventListener('load', () => {
+            console.log('=== RivRang Animation Performance Test ===');
+            checkBrowserSupport();
+            
+            // Auto-start performance monitoring after 2 seconds
+            setTimeout(() => {
+                startPerformanceTest();
+                testAnimationSmootness();
+            }, 2000);
+        });
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            stopPerformanceTest();
+        });
+    </script>
+</body>
+</html>

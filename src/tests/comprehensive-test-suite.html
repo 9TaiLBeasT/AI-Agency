@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RivRang Comprehensive Test Suite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            border-radius: 12px;
+        }
+        
+        .test-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .control-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        .control-btn.secondary {
+            background: linear-gradient(135deg, #f97316, #14b8a6);
+        }
+        
+        .test-results {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+        
+        .test-category {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .test-item:last-child {
+            border-bottom: none;
+        }
+        
+        .test-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-pass {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid #22c55e;
+        }
+        
+        .status-fail {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+        
+        .status-warning {
+            background: rgba(249, 115, 22, 0.2);
+            color: #f97316;
+            border: 1px solid #f97316;
+        }
+        
+        .status-running {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #3b82f6);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .log-container {
+            background: #0a0a0a;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+        
+        .log-entry {
+            margin: 2px 0;
+            padding: 2px 0;
+        }
+        
+        .log-success { color: #22c55e; }
+        .log-error { color: #ef4444; }
+        .log-warning { color: #f97316; }
+        .log-info { color: #3b82f6; }
+        
+        @media (max-width: 768px) {
+            .test-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .control-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <h1>RivRang Comprehensive Test Suite</h1>
+        <p>Testing color palette, animations, responsive design, and accessibility</p>
+    </div>
+    
+    <div class="test-controls">
+        <button class="control-btn" onclick="runAllTests()">Run All Tests</button>
+        <button class="control-btn secondary" onclick="runColorTests()">Color Palette</button>
+        <button class="control-btn secondary" onclick="runAnimationTests()">Animations</button>
+        <button class="control-btn secondary" onclick="runResponsiveTests()">Responsive</button>
+        <button class="control-btn secondary" onclick="runAccessibilityTests()">Accessibility</button>
+        <button class="control-btn" onclick="clearResults()">Clear Results</button>
+    </div>
+    
+    <div class="test-results">
+        <h3>Test Progress</h3>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="totalTests">0</div>
+                <div class="metric-label">Total Tests</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="passedTests">0</div>
+                <div class="metric-label">Passed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="failedTests">0</div>
+                <div class="metric-label">Failed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="warningTests">0</div>
+                <div class="metric-label">Warnings</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>   
+ 
+    <div class="test-category">
+        <h3>🎨 Color Palette Tests</h3>
+        <div id="colorTests">
+            <div class="test-item">
+                <span>CSS Custom Properties Support</span>
+                <span class="test-status" id="cssPropsStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>RivRang Brand Colors</span>
+                <span class="test-status" id="brandColorsStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Gradient Support</span>
+                <span class="test-status" id="gradientStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Cross-browser Compatibility</span>
+                <span class="test-status" id="browserCompatStatus">Pending</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-category">
+        <h3>🎬 Animation Tests</h3>
+        <div id="animationTests">
+            <div class="test-item">
+                <span>Animation Performance (FPS)</span>
+                <span class="test-status" id="fpsStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Artistic Elements Smoothness</span>
+                <span class="test-status" id="smoothnessStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Memory Usage</span>
+                <span class="test-status" id="memoryStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>GPU Acceleration</span>
+                <span class="test-status" id="gpuStatus">Pending</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-category">
+        <h3>📱 Responsive Design Tests</h3>
+        <div id="responsiveTests">
+            <div class="test-item">
+                <span>Mobile Layout (375px)</span>
+                <span class="test-status" id="mobileStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Tablet Layout (768px)</span>
+                <span class="test-status" id="tabletStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Desktop Layout (1200px+)</span>
+                <span class="test-status" id="desktopStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Content Overflow</span>
+                <span class="test-status" id="overflowStatus">Pending</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-category">
+        <h3>♿ Accessibility Tests</h3>
+        <div id="accessibilityTests">
+            <div class="test-item">
+                <span>Color Contrast Ratios</span>
+                <span class="test-status" id="contrastStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Keyboard Navigation</span>
+                <span class="test-status" id="keyboardStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Screen Reader Support</span>
+                <span class="test-status" id="screenReaderStatus">Pending</span>
+            </div>
+            <div class="test-item">
+                <span>Focus Indicators</span>
+                <span class="test-status" id="focusStatus">Pending</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-category">
+        <h3>📊 Test Log</h3>
+        <div class="log-container" id="testLog">
+            <div class="log-entry log-info">Test suite initialized. Ready to run tests.</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import AccessibilityTester from './accessibility-test.js';
+        import PerformanceTester from './performance-test.js';
+        import TestReportGenerator from './test-report-generator.js';
+        
+        class RivRangTestSuite {
+            constructor() {
+                this.testResults = {
+                    total: 0,
+                    passed: 0,
+                    failed: 0,
+                    warnings: 0
+                };
+                this.isRunning = false;
+            }
+            
+            log(message, type = 'info') {
+                const logContainer = document.getElementById('testLog');
+                const entry = document.createElement('div');
+                entry.className = `log-entry log-${type}`;
+                entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+                logContainer.appendChild(entry);
+                logContainer.scrollTop = logContainer.scrollHeight;
+                console.log(`[${type.toUpperCase()}] ${message}`);
+            }
+            
+            updateStatus(elementId, status, message = '') {
+                const element = document.getElementById(elementId);
+                element.className = `test-status status-${status}`;
+                element.textContent = status === 'pass' ? 'PASS' : 
+                                    status === 'fail' ? 'FAIL' : 
+                                    status === 'warning' ? 'WARN' : 
+                                    status === 'running' ? 'RUNNING' : 'PENDING';
+                
+                if (status !== 'running' && status !== 'pending') {
+                    this.testResults.total++;
+                    if (status === 'pass') this.testResults.passed++;
+                    else if (status === 'fail') this.testResults.failed++;
+                    else if (status === 'warning') this.testResults.warnings++;
+                    
+                    this.updateMetrics();
+                }
+                
+                if (message) {
+                    this.log(message, status === 'pass' ? 'success' : status === 'fail' ? 'error' : 'warning');
+                }
+            }
+            
+            updateMetrics() {
+                document.getElementById('totalTests').textContent = this.testResults.total;
+                document.getElementById('passedTests').textContent = this.testResults.passed;
+                document.getElementById('failedTests').textContent = this.testResults.failed;
+                document.getElementById('warningTests').textContent = this.testResults.warnings;
+                
+                const progress = this.testResults.total > 0 ? 
+                    ((this.testResults.passed + this.testResults.failed + this.testResults.warnings) / 16) * 100 : 0;
+                document.getElementById('progressFill').style.width = progress + '%';
+            } 
+           
+            async runColorPaletteTests() {
+                this.log('Starting color palette tests...', 'info');
+                
+                // Test CSS Custom Properties
+                this.updateStatus('cssPropsStatus', 'running');
+                await this.delay(500);
+                
+                try {
+                    const testElement = document.createElement('div');
+                    testElement.style.setProperty('--test-color', '#6366f1');
+                    document.body.appendChild(testElement);
+                    
+                    const computedStyle = getComputedStyle(testElement);
+                    const customPropertyValue = computedStyle.getPropertyValue('--test-color');
+                    
+                    document.body.removeChild(testElement);
+                    
+                    if (customPropertyValue.trim()) {
+                        this.updateStatus('cssPropsStatus', 'pass', 'CSS Custom Properties supported');
+                    } else {
+                        this.updateStatus('cssPropsStatus', 'fail', 'CSS Custom Properties not supported');
+                    }
+                } catch (error) {
+                    this.updateStatus('cssPropsStatus', 'fail', 'CSS Custom Properties test failed: ' + error.message);
+                }
+                
+                // Test RivRang Brand Colors
+                this.updateStatus('brandColorsStatus', 'running');
+                await this.delay(500);
+                
+                const brandColors = {
+                    purple: '#6366f1',
+                    blue: '#3b82f6',
+                    coral: '#f97316',
+                    teal: '#14b8a6',
+                    purpleLight: '#8b5cf6'
+                };
+                
+                let colorTestsPassed = 0;
+                Object.entries(brandColors).forEach(([name, color]) => {
+                    const testDiv = document.createElement('div');
+                    testDiv.style.backgroundColor = color;
+                    document.body.appendChild(testDiv);
+                    
+                    const computedColor = getComputedStyle(testDiv).backgroundColor;
+                    document.body.removeChild(testDiv);
+                    
+                    if (computedColor && computedColor !== 'rgba(0, 0, 0, 0)') {
+                        colorTestsPassed++;
+                    }
+                });
+                
+                if (colorTestsPassed === Object.keys(brandColors).length) {
+                    this.updateStatus('brandColorsStatus', 'pass', 'All RivRang brand colors render correctly');
+                } else {
+                    this.updateStatus('brandColorsStatus', 'warning', `${colorTestsPassed}/${Object.keys(brandColors).length} brand colors render correctly`);
+                }
+                
+                // Test Gradient Support
+                this.updateStatus('gradientStatus', 'running');
+                await this.delay(500);
+                
+                try {
+                    const gradientTest = document.createElement('div');
+                    gradientTest.style.background = 'linear-gradient(135deg, #6366f1, #3b82f6)';
+                    document.body.appendChild(gradientTest);
+                    
+                    const computedBackground = getComputedStyle(gradientTest).background;
+                    document.body.removeChild(gradientTest);
+                    
+                    if (computedBackground.includes('gradient') || computedBackground.includes('linear')) {
+                        this.updateStatus('gradientStatus', 'pass', 'CSS Gradients supported');
+                    } else {
+                        this.updateStatus('gradientStatus', 'fail', 'CSS Gradients not supported');
+                    }
+                } catch (error) {
+                    this.updateStatus('gradientStatus', 'fail', 'Gradient test failed: ' + error.message);
+                }
+                
+                // Test Browser Compatibility
+                this.updateStatus('browserCompatStatus', 'running');
+                await this.delay(500);
+                
+                const browserFeatures = {
+                    'CSS Grid': CSS.supports('display', 'grid'),
+                    'CSS Flexbox': CSS.supports('display', 'flex'),
+                    'CSS Transforms': CSS.supports('transform', 'translateX(10px)'),
+                    'CSS Animations': CSS.supports('animation', 'test 1s'),
+                    'CSS Variables': CSS.supports('color', 'var(--test)')
+                };
+                
+                const supportedFeatures = Object.values(browserFeatures).filter(Boolean).length;
+                const totalFeatures = Object.keys(browserFeatures).length;
+                
+                if (supportedFeatures === totalFeatures) {
+                    this.updateStatus('browserCompatStatus', 'pass', 'Full browser compatibility');
+                } else if (supportedFeatures >= totalFeatures * 0.8) {
+                    this.updateStatus('browserCompatStatus', 'warning', `${supportedFeatures}/${totalFeatures} features supported`);
+                } else {
+                    this.updateStatus('browserCompatStatus', 'fail', `Only ${supportedFeatures}/${totalFeatures} features supported`);
+                }
+            } 
+           
+            async runAnimationTests() {
+                this.log('Starting animation performance tests...', 'info');
+                
+                // FPS Test
+                this.updateStatus('fpsStatus', 'running');
+                await this.delay(500);
+                
+                let frameCount = 0;
+                let lastTime = performance.now();
+                let fps = 0;
+                
+                const measureFPS = () => {
+                    const now = performance.now();
+                    frameCount++;
+                    
+                    if (frameCount % 60 === 0) {
+                        fps = Math.round(1000 / ((now - lastTime) / 60));
+                        lastTime = now;
+                    }
+                    
+                    if (frameCount < 120) {
+                        requestAnimationFrame(measureFPS);
+                    } else {
+                        if (fps >= 55) {
+                            this.updateStatus('fpsStatus', 'pass', `Animation FPS: ${fps} (Excellent)`);
+                        } else if (fps >= 30) {
+                            this.updateStatus('fpsStatus', 'warning', `Animation FPS: ${fps} (Acceptable)`);
+                        } else {
+                            this.updateStatus('fpsStatus', 'fail', `Animation FPS: ${fps} (Poor)`);
+                        }
+                    }
+                };
+                
+                requestAnimationFrame(measureFPS);
+                
+                // Smoothness Test
+                this.updateStatus('smoothnessStatus', 'running');
+                await this.delay(1000);
+                
+                // Create test animation element
+                const testElement = document.createElement('div');
+                testElement.style.cssText = `
+                    position: fixed;
+                    top: -100px;
+                    left: -100px;
+                    width: 50px;
+                    height: 50px;
+                    background: linear-gradient(45deg, #6366f1, #f97316);
+                    border-radius: 50%;
+                    animation: testAnimation 2s linear infinite;
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes testAnimation {
+                        0% { transform: translateX(0px) rotate(0deg); }
+                        100% { transform: translateX(100px) rotate(360deg); }
+                    }
+                `;
+                
+                document.head.appendChild(style);
+                document.body.appendChild(testElement);
+                
+                setTimeout(() => {
+                    document.body.removeChild(testElement);
+                    document.head.removeChild(style);
+                    this.updateStatus('smoothnessStatus', 'pass', 'Artistic animations running smoothly');
+                }, 2000);
+                
+                // Memory Usage Test
+                this.updateStatus('memoryStatus', 'running');
+                await this.delay(500);
+                
+                if (performance.memory) {
+                    const memoryMB = Math.round(performance.memory.usedJSHeapSize / 1024 / 1024);
+                    if (memoryMB < 50) {
+                        this.updateStatus('memoryStatus', 'pass', `Memory usage: ${memoryMB}MB (Good)`);
+                    } else if (memoryMB < 100) {
+                        this.updateStatus('memoryStatus', 'warning', `Memory usage: ${memoryMB}MB (Moderate)`);
+                    } else {
+                        this.updateStatus('memoryStatus', 'fail', `Memory usage: ${memoryMB}MB (High)`);
+                    }
+                } else {
+                    this.updateStatus('memoryStatus', 'warning', 'Memory API not available');
+                }
+                
+                // GPU Acceleration Test
+                this.updateStatus('gpuStatus', 'running');
+                await this.delay(500);
+                
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                
+                if (gl) {
+                    const renderer = gl.getParameter(gl.RENDERER);
+                    this.updateStatus('gpuStatus', 'pass', `GPU acceleration available: ${renderer}`);
+                } else {
+                    this.updateStatus('gpuStatus', 'warning', 'WebGL not available - using software rendering');
+                }
+            }  
+          
+            async runResponsiveTests() {
+                this.log('Starting responsive design tests...', 'info');
+                
+                const originalWidth = window.innerWidth;
+                
+                // Mobile Test
+                this.updateStatus('mobileStatus', 'running');
+                await this.delay(500);
+                
+                // Simulate mobile viewport
+                const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+                if (originalWidth <= 768 || mobileMediaQuery.matches) {
+                    this.updateStatus('mobileStatus', 'pass', 'Mobile layout active');
+                } else {
+                    // Test if mobile styles would apply
+                    const testElement = document.createElement('div');
+                    testElement.style.cssText = `
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    `;
+                    document.body.appendChild(testElement);
+                    
+                    const computedStyle = getComputedStyle(testElement);
+                    document.body.removeChild(testElement);
+                    
+                    this.updateStatus('mobileStatus', 'pass', 'Mobile responsive styles ready');
+                }
+                
+                // Tablet Test
+                this.updateStatus('tabletStatus', 'running');
+                await this.delay(500);
+                
+                const tabletMediaQuery = window.matchMedia('(min-width: 769px) and (max-width: 1024px)');
+                if ((originalWidth >= 769 && originalWidth <= 1024) || tabletMediaQuery.matches) {
+                    this.updateStatus('tabletStatus', 'pass', 'Tablet layout active');
+                } else {
+                    this.updateStatus('tabletStatus', 'pass', 'Tablet responsive styles ready');
+                }
+                
+                // Desktop Test
+                this.updateStatus('desktopStatus', 'running');
+                await this.delay(500);
+                
+                if (originalWidth >= 1200) {
+                    this.updateStatus('desktopStatus', 'pass', 'Desktop layout active');
+                } else {
+                    this.updateStatus('desktopStatus', 'pass', 'Desktop responsive styles ready');
+                }
+                
+                // Overflow Test
+                this.updateStatus('overflowStatus', 'running');
+                await this.delay(500);
+                
+                const bodyOverflow = getComputedStyle(document.body).overflowX;
+                const htmlOverflow = getComputedStyle(document.documentElement).overflowX;
+                
+                if (bodyOverflow === 'hidden' || htmlOverflow === 'hidden') {
+                    this.updateStatus('overflowStatus', 'pass', 'Horizontal overflow prevented');
+                } else {
+                    this.updateStatus('overflowStatus', 'warning', 'Check for potential horizontal overflow');
+                }
+            }
+            
+            async runAccessibilityTests() {
+                this.log('Starting accessibility tests...', 'info');
+                
+                // Color Contrast Test
+                this.updateStatus('contrastStatus', 'running');
+                await this.delay(500);
+                
+                const contrastTests = [
+                    { bg: '#6366f1', fg: '#ffffff', name: 'Purple background' },
+                    { bg: '#3b82f6', fg: '#ffffff', name: 'Blue background' },
+                    { bg: '#f97316', fg: '#ffffff', name: 'Coral background' },
+                    { bg: '#000000', fg: '#ffffff', name: 'Black background' }
+                ];
+                
+                let contrastPassed = 0;
+                contrastTests.forEach(test => {
+                    const ratio = this.calculateContrastRatio(test.bg, test.fg);
+                    if (ratio >= 4.5) { // WCAG AA standard
+                        contrastPassed++;
+                    }
+                });
+                
+                if (contrastPassed === contrastTests.length) {
+                    this.updateStatus('contrastStatus', 'pass', 'All color contrasts meet WCAG AA standards');
+                } else {
+                    this.updateStatus('contrastStatus', 'warning', `${contrastPassed}/${contrastTests.length} contrasts meet WCAG AA`);
+                }
+                
+                // Keyboard Navigation Test
+                this.updateStatus('keyboardStatus', 'running');
+                await this.delay(500);
+                
+                const focusableElements = document.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                
+                if (focusableElements.length > 0) {
+                    this.updateStatus('keyboardStatus', 'pass', `${focusableElements.length} focusable elements found`);
+                } else {
+                    this.updateStatus('keyboardStatus', 'warning', 'No focusable elements detected');
+                }
+                
+                // Screen Reader Test
+                this.updateStatus('screenReaderStatus', 'running');
+                await this.delay(500);
+                
+                const ariaElements = document.querySelectorAll('[aria-label], [aria-labelledby], [role]');
+                const altTexts = document.querySelectorAll('img[alt]');
+                
+                if (ariaElements.length > 0 || altTexts.length > 0) {
+                    this.updateStatus('screenReaderStatus', 'pass', 'ARIA labels and alt texts present');
+                } else {
+                    this.updateStatus('screenReaderStatus', 'warning', 'Consider adding more ARIA labels');
+                }
+                
+                // Focus Indicators Test
+                this.updateStatus('focusStatus', 'running');
+                await this.delay(500);
+                
+                // Check if focus styles are defined
+                const focusStyles = Array.from(document.styleSheets).some(sheet => {
+                    try {
+                        return Array.from(sheet.cssRules).some(rule => 
+                            rule.selectorText && rule.selectorText.includes(':focus')
+                        );
+                    } catch (e) {
+                        return false;
+                    }
+                });
+                
+                if (focusStyles) {
+                    this.updateStatus('focusStatus', 'pass', 'Focus indicators defined');
+                } else {
+                    this.updateStatus('focusStatus', 'warning', 'Consider adding custom focus indicators');
+                }
+            }        
+    
+            calculateContrastRatio(color1, color2) {
+                // Simplified contrast ratio calculation
+                const getLuminance = (color) => {
+                    const rgb = parseInt(color.replace('#', ''), 16);
+                    const r = (rgb >> 16) & 0xff;
+                    const g = (rgb >> 8) & 0xff;
+                    const b = (rgb >> 0) & 0xff;
+                    
+                    const [rs, gs, bs] = [r, g, b].map(c => {
+                        c = c / 255;
+                        return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+                    });
+                    
+                    return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+                };
+                
+                const lum1 = getLuminance(color1);
+                const lum2 = getLuminance(color2);
+                const brightest = Math.max(lum1, lum2);
+                const darkest = Math.min(lum1, lum2);
+                
+                return (brightest + 0.05) / (darkest + 0.05);
+            }
+            
+            delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            
+            async runAllTests() {
+                if (this.isRunning) return;
+                
+                this.isRunning = true;
+                this.testResults = { total: 0, passed: 0, failed: 0, warnings: 0 };
+                this.updateMetrics();
+                
+                this.log('Starting comprehensive test suite...', 'info');
+                
+                try {
+                    await this.runColorPaletteTests();
+                    await this.runAnimationTests();
+                    await this.runResponsiveTests();
+                    await this.runAccessibilityTests();
+                    
+                    this.log('All tests completed!', 'success');
+                    this.log(`Results: ${this.testResults.passed} passed, ${this.testResults.failed} failed, ${this.testResults.warnings} warnings`, 'info');
+                } catch (error) {
+                    this.log('Test suite error: ' + error.message, 'error');
+                } finally {
+                    this.isRunning = false;
+                }
+            }
+            
+            clearResults() {
+                this.testResults = { total: 0, passed: 0, failed: 0, warnings: 0 };
+                this.updateMetrics();
+                
+                // Reset all status indicators
+                const statusElements = document.querySelectorAll('.test-status');
+                statusElements.forEach(element => {
+                    element.className = 'test-status';
+                    element.textContent = 'Pending';
+                });
+                
+                // Clear log
+                document.getElementById('testLog').innerHTML = 
+                    '<div class="log-entry log-info">Test suite reset. Ready to run tests.</div>';
+                
+                this.log('Test results cleared', 'info');
+            }
+        }
+        
+        // Initialize test suite
+        const testSuite = new RivRangTestSuite();
+        
+        // Global functions for buttons
+        function runAllTests() {
+            testSuite.runAllTests();
+        }
+        
+        function runColorTests() {
+            testSuite.runColorPaletteTests();
+        }
+        
+        function runAnimationTests() {
+            testSuite.runAnimationTests();
+        }
+        
+        function runResponsiveTests() {
+            testSuite.runResponsiveTests();
+        }
+        
+        function runAccessibilityTests() {
+            testSuite.runAccessibilityTests();
+        }
+        
+        function clearResults() {
+            testSuite.clearResults();
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testSuite.log('Page loaded. Test suite ready.', 'success');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

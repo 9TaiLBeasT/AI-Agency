@@ -507,7 +507,7 @@ const ModelViewer: FC<ViewerProps> = ({
       {showScreenshotButton && (
         <button
           onClick={capture}
-          className="absolute right-4 top-4 z-10 cursor-pointer px-4 py-2 rounded-lg border border-green-400/50 bg-black/80 text-green-400 hover:bg-green-400/10 transition-colors duration-300"
+          className="absolute right-4 top-4 z-10 cursor-pointer px-4 py-2 rounded-lg border border-rivrang-mint/50 bg-rivrang-cream/80 text-rivrang-mint-dark hover:bg-rivrang-mint/10 transition-colors duration-300"
         >
           📸
         </button>

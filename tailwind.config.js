@@ -55,6 +55,48 @@ export default {
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
         },
+        // RivRang Ganesh Festival colors
+        rivrang: {
+          // Festival oranges (from Ganesha's body)
+          orange: '#ff8c42',
+          'orange-light': '#ffb380',
+          'orange-dark': '#e6732a',
+          
+          // Sacred reds (from robes and decorations)
+          red: '#dc2626',
+          'red-light': '#f87171',
+          'red-dark': '#b91c1c',
+          
+          // Golden yellows (from ornaments and crown)
+          gold: '#fbbf24',
+          'gold-light': '#fde68a',
+          'gold-dark': '#d97706',
+          
+          // Royal blues (from clothing accents)
+          blue: '#2563eb',
+          'blue-light': '#93c5fd',
+          'blue-dark': '#1d4ed8',
+          
+          // Clean white cream backgrounds
+          cream: '#fefefe',
+          'cream-warm': '#f8f8f8',
+          
+          // Lotus pinks (from lotus petals)
+          pink: '#ec4899',
+          'pink-light': '#f9a8d4',
+          'pink-dark': '#be185d',
+          
+          // Text colors for clean white background
+          'text-primary': '#1f2937',
+          'text-secondary': '#4b5563',
+          'text-muted': '#6b7280',
+          
+          // Additional colors for clean design
+          'mint': '#10b981',
+          'mint-light': '#6ee7b7',
+          'mint-dark': '#047857',
+          'blush-warm': '#f97316',
+        },
       },
       keyframes: {
         'accordion-down': {

@@ -7,7 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node src/tests/run-tests.js",
+    "test:color": "node src/tests/run-tests.js --color-only",
+    "test:animation": "node src/tests/run-tests.js --animation-only",
+    "test:responsive": "node src/tests/run-tests.js --responsive-only",
+    "test:accessibility": "node src/tests/run-tests.js --accessibility-only",
+    "test:browser": "vite preview --open src/tests/comprehensive-test-suite.html"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -50,7 +56,9 @@
     "framer-motion": "^11.5.4",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.446.0",
+    "motion": "^12.23.12",
     "next-themes": "^0.3.0",
+    "ogl": "^1.0.11",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",

@@ -1,6 +1,7 @@
-import React from 'react';
+
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FeaturesSectionWithBentoGrid } from './ui/feature-section-with-bento-grid';
+import { SectionArtisticEnhancements } from './ui/artistic-enhancements';
 
 const Features = () => {
   const { scrollY } = useScroll();
@@ -10,9 +11,14 @@ const Features = () => {
   return (
     <motion.div 
       style={{ y, opacity }}
-      className="py-20 bg-black w-full relative"
+      className="py-20 w-full relative"
     >
-      <FeaturesSectionWithBentoGrid />
+      {/* Artistic enhancements for this section */}
+      <SectionArtisticEnhancements />
+      
+      <div className="relative z-10">
+        <FeaturesSectionWithBentoGrid />
+      </div>
     </motion.div>
   );
 };

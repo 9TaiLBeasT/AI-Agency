@@ -2,38 +2,38 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Play, Brain, Zap, Globe as GlobeIcon, Database, Shield } from "lucide-react";
+import { Play, Palette, Sparkles, Eye, Layers, Brush, Monitor, Smartphone } from "lucide-react";
 import createGlobe from "cobe";
 
 export function FeaturesSectionWithBentoGrid() {
   const features = [
     {
-      title: "AI-Powered Analytics Dashboard",
+      title: "Design Process Visualization",
       description:
-        "Track and analyze your AI model performance with real-time insights and comprehensive metrics.",
+        "Experience our creative workflow from concept to completion with interactive design process tracking.",
       skeleton: <SkeletonOne />,
       className:
-        "col-span-1 md:col-span-4 lg:col-span-4 border-b md:border-r border-green-500/20",
+        "col-span-1 md:col-span-4 lg:col-span-4 border-b md:border-r border-purple-500/20",
     },
     {
-      title: "Smart Image Processing",
+      title: "Creative Portfolio Gallery",
       description:
-        "Process and analyze images with our advanced computer vision AI technology.",
+        "Explore our stunning collection of brand identities, web designs, and creative campaigns.",
       skeleton: <SkeletonTwo />,
-      className: "col-span-1 md:col-span-2 lg:col-span-2 border-b border-green-500/20",
+      className: "col-span-1 md:col-span-2 lg:col-span-2 border-b border-purple-500/20",
     },
     {
-      title: "AI Neural Demo Videos",
+      title: "Design Showcase Videos",
       description:
-        "Watch our AI technology in action and see how it can transform your business operations.",
+        "Watch our creative process in action and see how we bring brands to life through design.",
       skeleton: <SkeletonThree />,
       className:
-        "col-span-1 md:col-span-3 lg:col-span-3 border-b md:border-r border-green-500/20",
+        "col-span-1 md:col-span-3 lg:col-span-3 border-b md:border-r border-purple-500/20",
     },
     {
-      title: "Global AI Deployment",
+      title: "Creative Tools & Technologies",
       description:
-        "Deploy your AI models globally with our cutting-edge cloud infrastructure and real-time monitoring.",
+        "Discover the cutting-edge design tools and technologies we use to create exceptional digital experiences.",
       skeleton: <SkeletonFour />,
       className: "col-span-1 md:col-span-3 lg:col-span-3 border-b md:border-none",
     },
@@ -42,18 +42,18 @@ export function FeaturesSectionWithBentoGrid() {
   return (
     <div className="relative z-20 py-10 lg:py-20 max-w-7xl mx-auto">
       <div className="px-8">
-        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-white">
-          Powered by <span className="text-green-400">Advanced AI Features</span>
+        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-rivrang-text-primary">
+          Where <span className="text-rivrang-mint-dark">Creativity Flows</span>
         </h4>
 
-        <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-gray-400 text-center font-normal">
-          From machine learning to neural networks, AI Neural provides comprehensive AI solutions 
-          that revolutionize how businesses operate and grow.
+        <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-rivrang-text-secondary text-center font-normal">
+          From concept to creation, RivRang transforms your vision into stunning digital experiences 
+          that captivate audiences and drive results.
         </p>
       </div>
 
       <div className="relative">
-        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 mt-12 xl:border rounded-md border-green-500/20 bg-gray-900/20 backdrop-blur-sm">
+        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 mt-12 xl:border rounded-md border-rivrang-mint/30 bg-white/60 backdrop-blur-sm shadow-sm">
           {features.map((feature) => (
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>
@@ -75,7 +75,7 @@ const FeatureCard = ({
   className?: string;
 }) => {
   return (
-    <div className={cn(`p-4 sm:p-8 relative overflow-hidden bg-black/40 backdrop-blur-sm`, className)}>
+    <div className={cn(`p-4 sm:p-8 relative overflow-hidden bg-white/70 backdrop-blur-sm`, className)}>
       {children}
     </div>
   );
@@ -83,7 +83,7 @@ const FeatureCard = ({
 
 const FeatureTitle = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <p className="max-w-5xl mx-auto text-left tracking-tight text-white text-xl md:text-2xl md:leading-snug">
+    <p className="max-w-5xl mx-auto text-left tracking-tight text-rivrang-text-primary text-xl md:text-2xl md:leading-snug">
       {children}
     </p>
   );
@@ -94,7 +94,7 @@ const FeatureDescription = ({ children }: { children?: React.ReactNode }) => {
     <p
       className={cn(
         "text-sm md:text-base max-w-4xl text-left mx-auto",
-        "text-gray-400 text-center font-normal",
+        "text-rivrang-text-secondary text-center font-normal",
         "text-left max-w-sm mx-0 md:text-sm my-2"
       )}
     >
@@ -106,46 +106,54 @@ const FeatureDescription = ({ children }: { children?: React.ReactNode }) => {
 export const SkeletonOne = () => {
   return (
     <div className="relative flex py-8 px-2 gap-10 h-full">
-      <div className="w-full p-5 mx-auto bg-gray-900/80 backdrop-blur-sm shadow-2xl group h-full border border-green-500/20 rounded-lg">
+      <div className="w-full p-5 mx-auto bg-white/85 backdrop-blur-sm shadow-2xl group h-full border border-rivrang-mint/30 rounded-lg">
         <div className="flex flex-1 w-full h-full flex-col space-y-2">
-          {/* Dashboard Header */}
+          {/* Design Process Header */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
-              <Brain className="w-6 h-6 text-green-400" />
-              <span className="text-white font-semibold">AI Analytics</span>
+              <Palette className="w-6 h-6 text-rivrang-mint-dark" />
+              <span className="text-rivrang-text-primary font-semibold">Design Process</span>
             </div>
             <div className="flex items-center space-x-1">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-green-400 text-xs">Live</span>
+              <div className="w-2 h-2 bg-rivrang-mint-dark rounded-sm animate-pulse"></div>
+              <span className="text-rivrang-mint-dark text-xs">Active</span>
             </div>
           </div>
           
-          {/* Metrics Grid */}
+          {/* Process Steps */}
           <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-green-500/10 p-3 rounded border border-green-500/20">
-              <div className="text-green-400 text-2xl font-bold">98.7%</div>
-              <div className="text-gray-400 text-xs">Accuracy</div>
+            <div className="bg-rivrang-mint/10 p-3 rounded border border-rivrang-mint/20">
+              <div className="text-rivrang-mint-dark text-2xl font-bold">200+</div>
+              <div className="text-rivrang-text-muted text-xs">Projects</div>
             </div>
-            <div className="bg-green-500/10 p-3 rounded border border-green-500/20">
-              <div className="text-green-400 text-2xl font-bold">1.2M</div>
-              <div className="text-gray-400 text-xs">Predictions</div>
+            <div className="bg-rivrang-sky/10 p-3 rounded border border-rivrang-sky/20">
+              <div className="text-rivrang-sky-dark text-2xl font-bold">98%</div>
+              <div className="text-rivrang-text-muted text-xs">Satisfaction</div>
             </div>
-            <div className="bg-green-500/10 p-3 rounded border border-green-500/20">
-              <div className="text-green-400 text-2xl font-bold">24/7</div>
-              <div className="text-gray-400 text-xs">Uptime</div>
+            <div className="bg-rivrang-blush/10 p-3 rounded border border-rivrang-blush/20">
+              <div className="text-rivrang-blush-warm text-2xl font-bold">5★</div>
+              <div className="text-rivrang-text-muted text-xs">Rating</div>
             </div>
           </div>
           
-          {/* Chart Simulation */}
-          <div className="flex-1 bg-gray-800/50 rounded p-4 border border-green-500/10">
-            <div className="flex items-end space-x-1 h-20">
-              {[40, 60, 80, 45, 90, 70, 85, 95].map((height, i) => (
+          {/* Creative Flow Visualization */}
+          <div className="flex-1 bg-white/60 rounded p-4 border border-rivrang-mint/20">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-rivrang-text-secondary text-sm">Creative Workflow</span>
+              <div className="flex space-x-1">
+                <div className="w-2 h-2 bg-rivrang-mint-dark rounded-sm"></div>
+                <div className="w-2 h-2 bg-rivrang-sky-dark rounded-sm"></div>
+                <div className="w-2 h-2 bg-rivrang-blush-warm rounded-sm"></div>
+              </div>
+            </div>
+            <div className="flex items-end space-x-1 h-16">
+              {[60, 80, 95, 70, 85, 90, 75, 100].map((height, i) => (
                 <motion.div
                   key={i}
-                  className="bg-gradient-to-t from-green-600 to-green-400 rounded-sm flex-1"
+                  className="bg-gradient-to-t from-rivrang-mint-dark via-rivrang-sky-dark to-rivrang-blush-warm rounded-sm flex-1"
                   initial={{ height: 0 }}
                   animate={{ height: `${height}%` }}
-                  transition={{ duration: 1, delay: i * 0.1 }}
+                  transition={{ duration: 1.2, delay: i * 0.15 }}
                 />
               ))}
             </div>
@@ -153,8 +161,7 @@ export const SkeletonOne = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 z-40 inset-x-0 h-60 bg-gradient-to-t from-black via-black to-transparent w-full pointer-events-none" />
-      <div className="absolute top-0 z-40 inset-x-0 h-60 bg-gradient-to-b from-black via-transparent to-transparent w-full pointer-events-none" />
+      {/* Removed gradient overlays */}
     </div>
   );
 };
@@ -163,21 +170,21 @@ export const SkeletonThree = () => {
   return (
     <div className="relative flex gap-10 h-full group/image cursor-pointer">
       <div className="w-full mx-auto bg-transparent group h-full">
-        <div className="flex flex-1 w-full h-full flex-col space-y-2 relative bg-gray-900/50 rounded-lg border border-green-500/20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent" />
+        <div className="flex flex-1 w-full h-full flex-col space-y-2 relative bg-white/70 rounded-lg border border-rivrang-mint/30 overflow-hidden">
+          {/* Removed gradient overlay */}
           
           {/* Video Thumbnail */}
-          <div className="relative flex-1 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+          <div className="relative flex-1 bg-rivrang-cream flex items-center justify-center">
             <img
-              src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt="AI Demo"
+              src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800"
+              alt="Design Showcase"
               className="w-full h-full object-cover opacity-80 group-hover/image:opacity-60 transition-all duration-300"
             />
             
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="w-16 h-16 bg-green-500/90 rounded-full flex items-center justify-center backdrop-blur-sm border border-green-400"
+                className="w-16 h-16 bg-rivrang-mint-dark/90 rounded-lg flex items-center justify-center backdrop-blur-sm border border-rivrang-mint"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -187,12 +194,12 @@ export const SkeletonThree = () => {
           </div>
           
           {/* Video Info */}
-          <div className="p-4 bg-gray-900/80 backdrop-blur-sm">
-            <h4 className="text-white font-semibold mb-1">AI Neural in Action</h4>
-            <p className="text-gray-400 text-sm">See how our AI transforms businesses</p>
+          <div className="p-4 bg-white/85 backdrop-blur-sm">
+            <h4 className="text-rivrang-text-primary font-semibold mb-1">Creative Process</h4>
+            <p className="text-rivrang-text-secondary text-sm">Watch our design come to life</p>
             <div className="flex items-center mt-2 space-x-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-red-400 text-xs">Live Demo</span>
+              <div className="w-2 h-2 bg-rivrang-mint-dark rounded-sm animate-pulse"></div>
+              <span className="text-rivrang-mint-dark text-xs">Behind the Scenes</span>
             </div>
           </div>
         </div>
@@ -202,12 +209,12 @@ export const SkeletonThree = () => {
 };
 
 export const SkeletonTwo = () => {
-  const images = [
-    "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=400",
+  const portfolioImages = [
+    "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=400",
   ];
 
   const imageVariants = {
@@ -226,78 +233,110 @@ export const SkeletonTwo = () => {
   return (
     <div className="relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden">
       <div className="flex flex-row -ml-20">
-        {images.map((image, idx) => (
+        {portfolioImages.map((image, idx) => (
           <motion.div
             variants={imageVariants}
-            key={"images-first" + idx}
+            key={"portfolio-first" + idx}
             style={{
               rotate: Math.random() * 20 - 10,
             }}
             whileHover="whileHover"
             whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-gray-900/80 border border-green-500/30 flex-shrink-0 overflow-hidden backdrop-blur-sm"
+            className="rounded-xl -mr-4 mt-4 p-1 bg-white/85 border border-rivrang-mint/40 flex-shrink-0 overflow-hidden backdrop-blur-sm shadow-sm"
           >
             <img
               src={image}
-              alt="AI processed images"
+              alt="Creative portfolio work"
               className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
             />
-            {/* Processing Overlay */}
-            <div className="absolute inset-0 bg-green-400/20 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-              <Zap className="w-6 h-6 text-green-400" />
+            {/* Creative Overlay */}
+            <div className="absolute inset-0 bg-rivrang-mint/20 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+              <Eye className="w-6 h-6 text-rivrang-mint-dark" />
             </div>
           </motion.div>
         ))}
       </div>
       <div className="flex flex-row">
-        {images.map((image, idx) => (
+        {portfolioImages.map((image, idx) => (
           <motion.div
-            key={"images-second" + idx}
+            key={"portfolio-second" + idx}
             style={{
               rotate: Math.random() * 20 - 10,
             }}
             variants={imageVariants}
             whileHover="whileHover"
             whileTap="whileTap"
-            className="rounded-xl -mr-4 mt-4 p-1 bg-gray-900/80 border border-green-500/30 flex-shrink-0 overflow-hidden backdrop-blur-sm"
+            className="rounded-xl -mr-4 mt-4 p-1 bg-white/85 border border-rivrang-sky/40 flex-shrink-0 overflow-hidden backdrop-blur-sm shadow-sm"
           >
             <img
               src={image}
-              alt="AI processed images"
+              alt="Creative portfolio work"
               className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
             />
-            {/* Processing Overlay */}
-            <div className="absolute inset-0 bg-green-400/20 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-              <Database className="w-6 h-6 text-green-400" />
+            {/* Creative Overlay */}
+            <div className="absolute inset-0 bg-rivrang-sky/20 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+              <Sparkles className="w-6 h-6 text-rivrang-sky-dark" />
             </div>
           </motion.div>
         ))}
       </div>
 
-      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-black to-transparent h-full pointer-events-none" />
-      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-black to-transparent h-full pointer-events-none" />
+      <div className="absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-rivrang-cream to-transparent h-full pointer-events-none" />
+      <div className="absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-rivrang-cream to-transparent h-full pointer-events-none" />
     </div>
   );
 };
 
 export const SkeletonFour = () => {
+  const tools = [
+    { name: "Figma", icon: <Layers className="w-6 h-6" />, color: "text-rivrang-mint-dark" },
+    { name: "Adobe CC", icon: <Brush className="w-6 h-6" />, color: "text-rivrang-sky-dark" },
+    { name: "Webflow", icon: <Monitor className="w-6 h-6" />, color: "text-rivrang-blush-warm" },
+    { name: "Framer", icon: <Smartphone className="w-6 h-6" />, color: "text-rivrang-lavender" },
+  ];
+
   return (
-    <div className="h-60 md:h-60 flex flex-col items-center relative bg-transparent mt-10">
+    <div className="h-60 md:h-60 flex flex-col items-center relative bg-transparent mt-10 p-6">
       <div className="absolute top-4 left-4 z-20">
-        <div className="flex items-center space-x-2 bg-gray-900/80 backdrop-blur-sm px-3 py-2 rounded-lg border border-green-500/20">
-          <GlobeIcon className="w-5 h-5 text-green-400" />
-          <span className="text-white text-sm font-medium">Global Network</span>
+        <div className="flex items-center space-x-2 bg-white/85 backdrop-blur-sm px-3 py-2 rounded-lg border border-rivrang-mint/30 shadow-sm">
+          <Palette className="w-5 h-5 text-rivrang-mint-dark" />
+          <span className="text-rivrang-text-primary text-sm font-medium">Creative Suite</span>
         </div>
       </div>
       
       <div className="absolute top-4 right-4 z-20">
-        <div className="flex items-center space-x-2 bg-gray-900/80 backdrop-blur-sm px-3 py-2 rounded-lg border border-green-500/20">
-          <Shield className="w-5 h-5 text-green-400" />
-          <span className="text-green-400 text-sm">Secure</span>
+        <div className="flex items-center space-x-2 bg-white/85 backdrop-blur-sm px-3 py-2 rounded-lg border border-rivrang-sky/30 shadow-sm">
+          <Sparkles className="w-5 h-5 text-rivrang-sky-dark" />
+          <span className="text-rivrang-sky-dark text-sm">Pro Tools</span>
         </div>
       </div>
       
-      <Globe className="absolute -right-10 md:-right-10 -bottom-80 md:-bottom-72" />
+      {/* Creative Tools Grid */}
+      <div className="grid grid-cols-2 gap-6 mt-16 w-full max-w-sm">
+        {tools.map((tool, idx) => (
+          <motion.div
+            key={tool.name}
+            className="bg-white/75 backdrop-blur-sm border border-rivrang-mint/40 rounded-lg p-4 flex flex-col items-center space-y-2 hover:border-rivrang-mint/60 transition-all duration-300 shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className={`${tool.color} mb-2`}>
+              {tool.icon}
+            </div>
+            <span className="text-rivrang-text-primary text-sm font-medium">{tool.name}</span>
+            <div className="w-full bg-rivrang-cream rounded-sm h-1">
+              <motion.div
+                className={`h-1 rounded-sm bg-gradient-to-r from-rivrang-mint-dark to-rivrang-sky-dark`}
+                initial={{ width: 0 }}
+                animate={{ width: `${Math.random() * 40 + 60}%` }}
+                transition={{ duration: 1, delay: idx * 0.2 }}
+              />
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
