@@ -8,6 +8,19 @@
   box-sizing: border-box;
 }
 
+@layer utilities {
+  .smooth-transition {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  
+  .optimize-animation {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -21,6 +34,8 @@ html, body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root {
@@ -28,6 +43,10 @@ html, body {
   padding: 0;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 25%, #e2e8f0 50%, #f8fafc 100%);
   min-height: 100vh;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000;
+  transform-style: preserve-3d;
 }
 
 a {

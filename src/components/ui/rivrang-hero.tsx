@@ -107,18 +107,20 @@ export function RivRangHero() {
             ease: "easeInOut",
           }}
           className="relative py-8"
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
         >
           <motion.h1
             className="text-6xl md:text-8xl font-black tracking-tight text-center"
           >
             <VariableProximity
               label="RivRang"
-              className="bg-gradient-to-br from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent font-black"
+              className="bg-gradient-to-br from-rivrang-blue-dark via-rivrang-pink to-rivrang-orange bg-clip-text text-transparent font-black drop-shadow-lg"
               fromFontVariationSettings="'wght' 600, 'opsz' 12"
               toFontVariationSettings="'wght' 1000, 'opsz' 48"
               containerRef={containerRef}
               radius={150}
               falloff="exponential"
+              style={{ fontFamily: "'Poppins', sans-serif", letterSpacing: "-0.02em" }}
             />
           </motion.h1>
         </motion.div>
@@ -132,7 +134,8 @@ export function RivRangHero() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="text-2xl md:text-3xl font-medium text-center tracking-wide"
+          className="text-2xl md:text-4xl font-medium text-center tracking-wide"
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
         >
           <motion.span
             animate={{
@@ -143,7 +146,12 @@ export function RivRangHero() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent bg-[length:200%_100%]"
+            className="bg-gradient-to-r from-rivrang-gold via-rivrang-pink-light to-rivrang-mint-light bg-clip-text text-transparent bg-[length:200%_100%] font-bold"
+            style={{ 
+              fontFamily: "'Playfair Display', serif", 
+              letterSpacing: "0.05em",
+              textShadow: "0 0 15px rgba(251, 191, 36, 0.3), 0 0 30px rgba(236, 72, 153, 0.2)"
+            }}
           >
             Flow of Art
           </motion.span>

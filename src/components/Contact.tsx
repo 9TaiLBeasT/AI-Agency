@@ -26,20 +26,20 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "hello@rivrang.com",
-      href: "mailto:hello@rivrang.com"
+      value: "gtsganesh2005@gmail.com",
+      href: "mailto:gtsganesh2005@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 234-5678",
-      href: "tel:+15552345678"
+      value: "+91-8639050061, +91-7893985181",
+      href: "tel:+918639050061"
     },
     {
-      icon: MapPin,
-      label: "Studio",
-      value: "456 Creative Avenue, Design District, DD 67890",
-      href: "#"
+      icon: Phone,
+      label: "Whatsapp",
+      value: "+91-7842329947",
+      href: "https://wa.me/917842329947"
     }
   ];
 

@@ -6,7 +6,6 @@ import { RivRangHero } from './components/ui/rivrang-hero';
 import Services from './components/Services';
 import Features from './components/Features';
 import About from './components/About';
-import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { BackgroundArtisticEnhancements } from './components/ui/artistic-enhancements';
@@ -76,11 +75,6 @@ function App() {
         <section id="about" className="w-full py-16 bg-rivrang-cream">
           <About />
         </section>
-
-        {/* Testimonials Section - Merged with About for navigation */}
-        <div className="w-full py-16 bg-rivrang-cream">
-          <Testimonials />
-        </div>
 
         {/* Contact Section */}
         <section id="contact" className="w-full py-16 bg-rivrang-cream">
