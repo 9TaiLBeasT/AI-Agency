@@ -3,8 +3,6 @@ import { Palette, Code, Megaphone, Camera } from 'lucide-react';
 import { PinContainer } from './ui/3d-pin';
 import { SectionArtisticEnhancements } from './ui/artistic-enhancements';
 
-import { useRef } from 'react';
-
 const Services = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [200, 800], [50, 0]);
@@ -180,7 +178,7 @@ const Services = () => {
 
                       {/* Valid Until */}
                       <div className="bg-blue-50 rounded-lg p-2 border border-blue-200 text-center">
-                        <div className="text-sm font-semibold text-blue-700">{service.validUntil}</div>
+                        <div className="text-sm font-semibold text-blue-700" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>{service.validUntil}</div>
                       </div>
                     </div>
 

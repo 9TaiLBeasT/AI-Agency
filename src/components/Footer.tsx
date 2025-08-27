@@ -16,9 +16,9 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Palette className="w-8 h-8 text-rivrang-mint-dark" />
-              <span className="text-2xl font-bold text-rivrang-text-primary">Riv<span className="text-rivrang-mint-dark">Rang</span></span>
+              <span className="text-2xl font-bold text-rivrang-text-primary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Riv<span className="text-rivrang-mint-dark">Rang</span></span>
             </div>
-            <p className="text-rivrang-text-secondary max-w-md mb-6">
+            <p className="text-rivrang-text-secondary max-w-md mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
               Where creativity flows into exceptional digital experiences. We craft stunning brand identities, websites, and creative campaigns that bring your vision to life.
             </p>
             <div className="flex space-x-4">
@@ -37,29 +37,37 @@ const Footer = () => {
             </div>
           </div>
 
-          <div>
-            <h3 className="text-rivrang-text-primary font-semibold mb-4">Creative Services</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">Brand Identity</a></li>
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">Web Design</a></li>
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">Digital Marketing</a></li>
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">UI/UX Design</a></li>
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium text-rivrang-text-primary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Our Services</h3>
+            <ul className="space-y-2 text-rivrang-text-secondary">
+              <li>
+                <a href="#" className="hover:text-rivrang-mint-dark transition-colors duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Video Editing</a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-rivrang-mint-dark transition-colors duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Graphic Design</a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-rivrang-mint-dark transition-colors duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Web Design & Development</a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-rivrang-mint-dark transition-colors duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Social Media & Presentations</a>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-rivrang-text-primary font-semibold mb-4">Agency</h3>
+            <h3 className="text-rivrang-text-primary font-semibold mb-4" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Agency</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">Our Story</a></li>
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">Portfolio</a></li>
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">Creative Process</a></li>
-              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300">Start Project</a></li>
+              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Our Story</a></li>
+              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Portfolio</a></li>
+              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Creative Process</a></li>
+              <li><a href="#" className="text-rivrang-text-secondary hover:text-rivrang-mint-dark transition duration-300" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Start Project</a></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-rivrang-mint/20 mt-8 pt-8 text-center">
-          <p className="text-rivrang-text-muted">
+          <p className="text-rivrang-text-muted" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
             © 2025 RivRang. All rights reserved. Where creativity flows into exceptional digital experiences.
           </p>
         </div>

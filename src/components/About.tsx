@@ -36,21 +36,21 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-rivrang-text-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-rivrang-text-primary mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
               Crafting the <span className="text-rivrang-lavender-dark">Flow of Art</span>
             </h2>
-            <p className="text-xl text-rivrang-text-secondary mb-8 leading-relaxed">
+            <p className="text-xl text-rivrang-text-secondary mb-8 leading-relaxed" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
               At RivRang, we believe in the transformative power of creative design. Our philosophy of "Flow of Art" 
               guides every project we undertake, blending artistic vision with strategic thinking to create digital 
               experiences that don't just look beautiful, but drive meaningful results for your business.
             </p>
             
             <div className="bg-white/80 rounded-lg p-6 mb-8 border border-rivrang-mint/30 shadow-sm">
-              <h3 className="text-xl font-semibold text-rivrang-text-primary mb-4 flex items-center">
+              <h3 className="text-xl font-semibold text-rivrang-text-primary mb-4 flex items-center" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
                 <span className="w-3 h-3 bg-gradient-to-r from-rivrang-lavender-dark to-rivrang-sky-dark rounded-full mr-3"></span>
                 Our Design Philosophy
               </h3>
-              <p className="text-rivrang-text-secondary leading-relaxed">
+              <p className="text-rivrang-text-secondary leading-relaxed" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
                 "Flow of Art" represents our belief that great design should move like water—fluid, natural, and purposeful. 
                 We don't just create static visuals; we craft experiences that flow seamlessly from concept to execution, 
                 ensuring every element serves both aesthetic beauty and functional purpose. This philosophy drives us to 
@@ -61,15 +61,15 @@ const About = () => {
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-rivrang-lavender-dark rounded-full"></div>
-                <span className="text-rivrang-text-secondary">Founded by creative visionaries and design experts</span>
+                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Founded by creative visionaries and design experts</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-rivrang-sky-dark rounded-full"></div>
-                <span className="text-rivrang-text-secondary">Trusted by brands seeking creative excellence</span>
+                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Trusted by brands seeking creative excellence</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-rivrang-blush-warm rounded-full"></div>
-                <span className="text-rivrang-text-secondary">Dedicated to artistic flow and creative innovation</span>
+                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Dedicated to artistic flow and creative innovation</span>
               </div>
             </div>
 
@@ -102,8 +102,8 @@ const About = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-rivrang-cream/50 to-transparent rounded-xl" />
               <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-rivrang-text-primary font-semibold text-lg">Our Creative Team</p>
-                <p className="text-rivrang-text-secondary text-sm">Bringing artistic vision to life</p>
+                <p className="text-rivrang-text-primary font-semibold text-lg" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Our Creative Team</p>
+                <p className="text-rivrang-text-secondary text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Bringing artistic vision to life</p>
               </div>
             </div>
           </motion.div>

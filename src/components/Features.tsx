@@ -10,7 +10,7 @@ const Features = () => {
 
   return (
     <motion.div 
-      style={{ y, opacity }}
+      style={{ y, opacity, fontFamily: 'Inter, system-ui, sans-serif' }}
       className="py-20 w-full relative"
     >
       {/* Artistic enhancements for this section */}

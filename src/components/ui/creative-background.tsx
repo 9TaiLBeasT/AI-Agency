@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
-
 export function CreativeBackground({ className = "" }: { className?: string }) {
   return (
     <div className={`fixed inset-0 pointer-events-none overflow-hidden ${className}`}>

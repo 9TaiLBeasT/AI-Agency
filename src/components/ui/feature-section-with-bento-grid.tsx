@@ -42,11 +42,11 @@ export function FeaturesSectionWithBentoGrid() {
   return (
     <div className="relative z-20 py-10 lg:py-20 max-w-7xl mx-auto">
       <div className="px-8">
-        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-rivrang-text-primary">
+        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-rivrang-text-primary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
           Where <span className="text-rivrang-mint-dark">Creativity Flows</span>
         </h4>
 
-        <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-rivrang-text-secondary text-center font-normal">
+        <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-rivrang-text-secondary text-center font-normal" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
           From concept to creation, RivRang transforms your vision into stunning digital experiences 
           that captivate audiences and drive results.
         </p>
@@ -83,7 +83,7 @@ const FeatureCard = ({
 
 const FeatureTitle = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <p className="max-w-5xl mx-auto text-left tracking-tight text-rivrang-text-primary text-xl md:text-2xl md:leading-snug">
+    <p className="max-w-5xl mx-auto text-left tracking-tight text-rivrang-text-primary text-xl md:text-2xl md:leading-snug" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
       {children}
     </p>
   );
@@ -97,6 +97,7 @@ const FeatureDescription = ({ children }: { children?: React.ReactNode }) => {
         "text-rivrang-text-secondary text-center font-normal",
         "text-left max-w-sm mx-0 md:text-sm my-2"
       )}
+      style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
       {children}
     </p>
@@ -112,34 +113,34 @@ export const SkeletonOne = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
               <Palette className="w-6 h-6 text-rivrang-mint-dark" />
-              <span className="text-rivrang-text-primary font-semibold">Design Process</span>
+              <span className="text-rivrang-text-primary font-semibold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Design Process</span>
             </div>
             <div className="flex items-center space-x-1">
               <div className="w-2 h-2 bg-rivrang-mint-dark rounded-sm animate-pulse"></div>
-              <span className="text-rivrang-mint-dark text-xs">Active</span>
+              <span className="text-rivrang-mint-dark text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Active</span>
             </div>
           </div>
           
           {/* Process Steps */}
           <div className="grid grid-cols-3 gap-4 mb-6">
             <div className="bg-rivrang-mint/10 p-3 rounded border border-rivrang-mint/20">
-              <div className="text-rivrang-mint-dark text-2xl font-bold">200+</div>
-              <div className="text-rivrang-text-muted text-xs">Projects</div>
+              <div className="text-rivrang-mint-dark text-2xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>200+</div>
+            <div className="text-rivrang-text-muted text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Projects</div>
             </div>
             <div className="bg-rivrang-sky/10 p-3 rounded border border-rivrang-sky/20">
-              <div className="text-rivrang-sky-dark text-2xl font-bold">98%</div>
-              <div className="text-rivrang-text-muted text-xs">Satisfaction</div>
+              <div className="text-rivrang-sky-dark text-2xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>98%</div>
+            <div className="text-rivrang-text-muted text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Satisfaction</div>
             </div>
             <div className="bg-rivrang-blush/10 p-3 rounded border border-rivrang-blush/20">
-              <div className="text-rivrang-blush-warm text-2xl font-bold">5★</div>
-              <div className="text-rivrang-text-muted text-xs">Rating</div>
+              <div className="text-rivrang-blush-warm text-2xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>5★</div>
+            <div className="text-rivrang-text-muted text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Rating</div>
             </div>
           </div>
           
           {/* Creative Flow Visualization */}
           <div className="flex-1 bg-white/60 rounded p-4 border border-rivrang-mint/20">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-rivrang-text-secondary text-sm">Creative Workflow</span>
+              <span className="text-rivrang-text-secondary text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Creative Workflow</span>
               <div className="flex space-x-1">
                 <div className="w-2 h-2 bg-rivrang-mint-dark rounded-sm"></div>
                 <div className="w-2 h-2 bg-rivrang-sky-dark rounded-sm"></div>
@@ -195,11 +196,11 @@ export const SkeletonThree = () => {
           
           {/* Video Info */}
           <div className="p-4 bg-white/85 backdrop-blur-sm">
-            <h4 className="text-rivrang-text-primary font-semibold mb-1">Creative Process</h4>
-            <p className="text-rivrang-text-secondary text-sm">Watch our design come to life</p>
+            <h4 className="text-rivrang-text-primary font-semibold mb-1" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Creative Process</h4>
+            <p className="text-rivrang-text-secondary text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Watch our design come to life</p>
             <div className="flex items-center mt-2 space-x-2">
               <div className="w-2 h-2 bg-rivrang-mint-dark rounded-sm animate-pulse"></div>
-              <span className="text-rivrang-mint-dark text-xs">Behind the Scenes</span>
+              <span className="text-rivrang-mint-dark text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Behind the Scenes</span>
             </div>
           </div>
         </div>
@@ -300,14 +301,14 @@ export const SkeletonFour = () => {
       <div className="absolute top-4 left-4 z-20">
         <div className="flex items-center space-x-2 bg-white/85 backdrop-blur-sm px-3 py-2 rounded-lg border border-rivrang-mint/30 shadow-sm">
           <Palette className="w-5 h-5 text-rivrang-mint-dark" />
-          <span className="text-rivrang-text-primary text-sm font-medium">Creative Suite</span>
+          <span className="text-rivrang-text-primary text-sm font-medium" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Creative Suite</span>
         </div>
       </div>
       
       <div className="absolute top-4 right-4 z-20">
         <div className="flex items-center space-x-2 bg-white/85 backdrop-blur-sm px-3 py-2 rounded-lg border border-rivrang-sky/30 shadow-sm">
           <Sparkles className="w-5 h-5 text-rivrang-sky-dark" />
-          <span className="text-rivrang-sky-dark text-sm">Pro Tools</span>
+          <span className="text-rivrang-sky-dark text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Pro Tools</span>
         </div>
       </div>
       
@@ -325,7 +326,7 @@ export const SkeletonFour = () => {
             <div className={`${tool.color} mb-2`}>
               {tool.icon}
             </div>
-            <span className="text-rivrang-text-primary text-sm font-medium">{tool.name}</span>
+            <span className="text-rivrang-text-primary text-sm font-medium" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>{tool.name}</span>
             <div className="w-full bg-rivrang-cream rounded-sm h-1">
               <motion.div
                 className={`h-1 rounded-sm bg-gradient-to-r from-rivrang-mint-dark to-rivrang-sky-dark`}
