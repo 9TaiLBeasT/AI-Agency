@@ -40,20 +40,22 @@ export function FeaturesSectionWithBentoGrid() {
   ];
   
   return (
-    <div className="relative z-20 py-10 lg:py-20 max-w-7xl mx-auto">
+    <div className="relative z-20 py-20 max-w-7xl mx-auto">
       <div className="px-8">
-        <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-rivrang-text-primary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-          Where <span className="text-rivrang-mint-dark">Creativity Flows</span>
-        </h4>
+        <div className="text-center mb-16">
+          <h4 className="text-4xl md:text-5xl max-w-5xl mx-auto text-center tracking-tight font-bold text-rivrang-text-primary mb-4" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            Where <span className="text-rivrang-mint-dark">Creativity Flows</span>
+          </h4>
 
-        <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-rivrang-text-secondary text-center font-normal" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-          From concept to creation, RivRang transforms your vision into stunning digital experiences 
-          that captivate audiences and drive results.
-        </p>
+          <p className="text-xl max-w-2xl mx-auto text-rivrang-text-secondary text-center font-normal" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            From concept to creation, RivRang transforms your vision into stunning digital experiences 
+            that captivate audiences and drive results.
+          </p>
+        </div>
       </div>
 
       <div className="relative">
-        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 mt-12 xl:border rounded-md border-rivrang-mint/30 bg-white/60 backdrop-blur-sm shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 xl:border rounded-md border-rivrang-mint/30 bg-white/60 backdrop-blur-sm shadow-sm">
           {features.map((feature) => (
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>

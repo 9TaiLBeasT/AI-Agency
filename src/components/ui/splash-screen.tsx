@@ -16,60 +16,58 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, videoSrc }) => 
   };
 
   useEffect(() => {
-    console.log('SplashScreen mounted, videoSrc:', videoSrc);
+    // Mobile detection and optimization
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isSlowConnection = (navigator as any).connection && ((navigator as any).connection.effectiveType === '2g' || (navigator as any).connection.effectiveType === 'slow-2g');
+    
+    // Skip video on mobile or slow connections for faster load
+    if (isMobile || isSlowConnection) {
+      setTimeout(handleComplete, 500);
+      return;
+    }
+
     const video = videoRef.current;
     if (!video) {
-      console.log('No video element found, skipping splash screen');
-      setTimeout(handleComplete, 1000);
+      setTimeout(handleComplete, 800);
       return;
     }
 
     const handleLoadedData = () => {
-      console.log('Video loaded successfully');
       setIsVideoLoaded(true);
-      // Auto play the video once loaded
-      video.play().catch((error) => {
-        console.error('Video play failed:', error);
+      video.play().catch(() => {
         setIsVideoError(true);
-        setTimeout(handleComplete, 1000);
+        setTimeout(handleComplete, 800);
       });
     };
 
     const handleEnded = () => {
-      console.log('Video ended, transitioning to main site');
-      setTimeout(handleComplete, 500);
+      setTimeout(handleComplete, 300);
     };
 
-    const handleError = (error: Event) => {
-      console.error('Video failed to load:', error);
+    const handleError = () => {
       setIsVideoError(true);
-      setTimeout(handleComplete, 1000);
-    };
-
-    const handleCanPlay = () => {
-      console.log('Video can play');
-      setIsVideoLoaded(true);
+      setTimeout(handleComplete, 800);
     };
 
     video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('canplay', handleCanPlay);
     video.addEventListener('ended', handleEnded);
     video.addEventListener('error', handleError);
 
     return () => {
       video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('canplay', handleCanPlay);
       video.removeEventListener('ended', handleEnded);
       video.removeEventListener('error', handleError);
     };
   }, []);
 
-  // Fallback timeout - skip splash screen after 5 seconds regardless
+  // Fallback timeout - skip splash screen after 3 seconds on mobile, 4 on desktop
   useEffect(() => {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const timeout = isMobile ? 3000 : 4000;
+    
     const fallbackTimeout = setTimeout(() => {
-      console.log('Fallback timeout reached, skipping splash screen');
       handleComplete();
-    }, 5000);
+    }, timeout);
 
     return () => clearTimeout(fallbackTimeout);
   }, []);

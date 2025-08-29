@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import AnimeNavBarDemo from './components/ui/anime-navbar';
 import { RivRangHero } from './components/ui/rivrang-hero';
@@ -9,9 +9,11 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { BackgroundArtisticEnhancements } from './components/ui/artistic-enhancements';
-import SplashCursor from './components/ui/SplashCursor';
-import SplashScreen from './components/ui/splash-screen';
 import './App.css';
+
+// Lazy load heavy components
+const SplashCursor = lazy(() => import('./components/ui/SplashCursor'));
+const SplashScreen = lazy(() => import('./components/ui/splash-screen'));
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -29,10 +31,12 @@ function App() {
       {/* Splash Screen */}
       <AnimatePresence>
         {showSplash && (
-          <SplashScreen
-            videoSrc={videoSrc}
-            onComplete={handleSplashComplete}
-          />
+          <Suspense fallback={null}>
+            <SplashScreen
+              videoSrc={videoSrc}
+              onComplete={handleSplashComplete}
+            />
+          </Suspense>
         )}
       </AnimatePresence>
 
@@ -40,13 +44,15 @@ function App() {
       {!showSplash && (
         <div className="min-h-screen bg-rivrang-cream w-full overflow-x-hidden relative">
         {/* Splash Cursor Effect */}
-        <SplashCursor
-          DENSITY_DISSIPATION={2.5}
-          VELOCITY_DISSIPATION={1.5}
-          SPLAT_RADIUS={0.15}
-          SPLAT_FORCE={4000}
-          COLOR_UPDATE_SPEED={8}
-        />
+        <Suspense fallback={null}>
+          <SplashCursor
+            DENSITY_DISSIPATION={2.5}
+            VELOCITY_DISSIPATION={1.5}
+            SPLAT_RADIUS={0.15}
+            SPLAT_FORCE={4000}
+            COLOR_UPDATE_SPEED={8}
+          />
+        </Suspense>
 
         {/* Global artistic background */}
         <BackgroundArtisticEnhancements />

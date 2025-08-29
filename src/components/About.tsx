@@ -29,6 +29,23 @@ const About = () => {
       <SectionArtisticEnhancements />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-rivrang-text-primary mb-4" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            Crafting the <span className="text-rivrang-lavender-dark">Flow of Art</span>
+          </h2>
+          <p className="text-xl text-rivrang-text-secondary max-w-3xl mx-auto" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            At RivRang, we believe in the transformative power of creative design. Our philosophy of "Flow of Art" 
+            guides every project we undertake, blending artistic vision with strategic thinking to create digital 
+            experiences that don't just look beautiful, but drive meaningful results for your business.
+          </p>
+        </motion.div>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -36,9 +53,6 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-rivrang-text-primary mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-              Crafting the <span className="text-rivrang-lavender-dark">Flow of Art</span>
-            </h2>
             <p className="text-xl text-rivrang-text-secondary mb-8 leading-relaxed" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
               At RivRang, we believe in the transformative power of creative design. Our philosophy of "Flow of Art" 
               guides every project we undertake, blending artistic vision with strategic thinking to create digital 

@@ -69,6 +69,13 @@ export default function SplashCursor({
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
   TRANSPARENT = true
 }: SplashCursorProps) {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    typeof navigator !== 'undefined' ? navigator.userAgent : ''
+  );
+
+  const effectiveSimResolution = isMobile ? 64 : SIM_RESOLUTION;
+  const effectiveDyeResolution = isMobile ? 720 : DYE_RESOLUTION;
+  const effectiveShading = isMobile ? false : SHADING;
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -76,9 +83,18 @@ export default function SplashCursor({
     if (!canvas) return;
 
     let pointers: Pointer[] = [pointerPrototype()];
+    // Disable on very old mobile devices or low-end devices
+    const isLowEndDevice = typeof navigator !== 'undefined' && 
+      (navigator.hardwareConcurrency <= 2 || 
+       (navigator as any).deviceMemory && (navigator as any).deviceMemory < 4);
+
+    if (isMobile && isLowEndDevice) {
+      return;
+    }
+
     let config = {
-      SIM_RESOLUTION: SIM_RESOLUTION!,
-      DYE_RESOLUTION: DYE_RESOLUTION!,
+      SIM_RESOLUTION: effectiveSimResolution,
+      DYE_RESOLUTION: effectiveDyeResolution,
       CAPTURE_RESOLUTION: CAPTURE_RESOLUTION!,
       DENSITY_DISSIPATION: DENSITY_DISSIPATION!,
       VELOCITY_DISSIPATION: VELOCITY_DISSIPATION!,
@@ -87,7 +103,7 @@ export default function SplashCursor({
       CURL: CURL!,
       SPLAT_RADIUS: SPLAT_RADIUS!,
       SPLAT_FORCE: SPLAT_FORCE!,
-      SHADING,
+      SHADING: effectiveShading,
       COLOR_UPDATE_SPEED: COLOR_UPDATE_SPEED!,
       PAUSED: false,
       BACK_COLOR,
