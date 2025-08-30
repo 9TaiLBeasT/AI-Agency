@@ -1,6 +1,5 @@
 
-import { useState, lazy, Suspense } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { lazy, Suspense } from 'react';
 import AnimeNavBarDemo from './components/ui/anime-navbar';
 import { RivRangHero } from './components/ui/rivrang-hero';
 import Services from './components/Services';
@@ -13,35 +12,12 @@ import './App.css';
 
 // Lazy load heavy components
 const SplashCursor = lazy(() => import('./components/ui/SplashCursor'));
-const SplashScreen = lazy(() => import('./components/ui/splash-screen'));
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
-
-  // Path to your video file (place video in public folder)
-  // If no video is available, splash screen will automatically skip after 3 seconds
-  const videoSrc = "/intro-video.mp4"; // Update this path to match your video file
-
-  const handleSplashComplete = () => {
-    setShowSplash(false);
-  };
 
   return (
     <>
-      {/* Splash Screen */}
-      <AnimatePresence>
-        {showSplash && (
-          <Suspense fallback={null}>
-            <SplashScreen
-              videoSrc={videoSrc}
-              onComplete={handleSplashComplete}
-            />
-          </Suspense>
-        )}
-      </AnimatePresence>
-
       {/* Main Website */}
-      {!showSplash && (
         <div className="min-h-screen bg-rivrang-cream w-full overflow-x-hidden relative">
         {/* Splash Cursor Effect */}
         <Suspense fallback={null}>
@@ -90,7 +66,6 @@ function App() {
         {/* Footer */}
         <Footer />
         </div>
-      )}
     </>
   );
 }

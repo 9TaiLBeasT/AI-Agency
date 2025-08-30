@@ -14,24 +14,78 @@ export const isLowEndDevice = () => {
     (navigator as any).deviceMemory < 4 ||
     ((navigator as any).connection &&
       ((navigator as any).connection.effectiveType === '2g' ||
-        (navigator as any).connection.effectiveType === 'slow-2g'))
+        (navigator as any).connection.effectiveType === 'slow-2g' ||
+        (navigator as any).connection.saveData === true))
+  );
+};
+
+export const isMidRangeDevice = () => {
+  if (typeof navigator === 'undefined') return false;
+  
+  return (
+    isMobile() && 
+    !isLowEndDevice() && 
+    (navigator.hardwareConcurrency <= 4 ||
+     (navigator as any).deviceMemory < 8 ||
+     ((navigator as any).connection &&
+       (navigator as any).connection.effectiveType === '3g'))
   );
 };
 
 export const preloadCriticalResources = () => {
-  const criticalResources = [
-    '/fonts/inter-var.woff2',
-    '/fonts/inter-var-italic.woff2',
-  ];
+  // Define resources by type for appropriate preloading
+  const resources = {
+    fonts: [
+      { path: '/fonts/inter-var.woff2', type: 'font/woff2' },
+      { path: '/fonts/inter-var-italic.woff2', type: 'font/woff2' },
+    ],
+    scripts: [
+      { path: '/src/main.tsx', type: 'module' },
+    ],
+    styles: [],
+    images: []
+  };
 
-  criticalResources.forEach(resource => {
+  // Preload fonts
+  resources.fonts.forEach(resource => {
     const link = document.createElement('link');
     link.rel = 'preload';
-    link.href = resource;
+    link.href = resource.path;
     link.as = 'font';
+    link.type = resource.type;
     link.crossOrigin = 'anonymous';
     document.head.appendChild(link);
   });
+
+  // Preload scripts
+  resources.scripts.forEach(resource => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.href = resource.path;
+    link.as = 'script';
+    if (resource.type) link.type = resource.type;
+    document.head.appendChild(link);
+  });
+};
+
+// Add lazy loading for images and iframes
+export const setupLazyLoading = () => {
+  if ('loading' in HTMLImageElement.prototype) {
+    // Browser supports native lazy loading
+    document.querySelectorAll('img').forEach(img => {
+      if (!img.loading) img.loading = 'lazy';
+    });
+    
+    document.querySelectorAll('iframe').forEach(iframe => {
+      if (!iframe.loading) iframe.loading = 'lazy';
+    });
+  } else {
+    // Fallback for browsers that don't support native lazy loading
+    // Could implement intersection observer based solution here
+    import('./lazy-load-fallback').catch(() => {
+      console.log('Lazy loading fallback not available');
+    });
+  }
 };
 
 export const debounce = <T extends (...args: any[]) => any>(

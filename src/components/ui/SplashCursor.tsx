@@ -86,25 +86,31 @@ export default function SplashCursor({
     // Disable on very old mobile devices or low-end devices
     const isLowEndDevice = typeof navigator !== 'undefined' && 
       (navigator.hardwareConcurrency <= 2 || 
-       (navigator as any).deviceMemory && (navigator as any).deviceMemory < 4);
+       (navigator as any).deviceMemory && (navigator as any).deviceMemory < 4 ||
+       ((navigator as any).connection &&
+        ((navigator as any).connection.effectiveType === '2g' ||
+         (navigator as any).connection.effectiveType === 'slow-2g')));
+    
+    // For mid-range devices, we'll use lower quality settings
+    const isMidRange = typeof navigator !== 'undefined' && isMobile && navigator.hardwareConcurrency <= 4;
 
     if (isMobile && isLowEndDevice) {
       return;
     }
 
     let config = {
-      SIM_RESOLUTION: effectiveSimResolution,
-      DYE_RESOLUTION: effectiveDyeResolution,
-      CAPTURE_RESOLUTION: CAPTURE_RESOLUTION!,
-      DENSITY_DISSIPATION: DENSITY_DISSIPATION!,
-      VELOCITY_DISSIPATION: VELOCITY_DISSIPATION!,
+      SIM_RESOLUTION: isMidRange ? Math.floor(effectiveSimResolution / 2) : effectiveSimResolution,
+      DYE_RESOLUTION: isMidRange ? Math.floor(effectiveDyeResolution / 2) : effectiveDyeResolution,
+      CAPTURE_RESOLUTION: isMidRange ? Math.floor(CAPTURE_RESOLUTION! / 2) : CAPTURE_RESOLUTION!,
+      DENSITY_DISSIPATION: isMidRange ? DENSITY_DISSIPATION! * 1.5 : DENSITY_DISSIPATION!,
+      VELOCITY_DISSIPATION: isMidRange ? VELOCITY_DISSIPATION! * 1.5 : VELOCITY_DISSIPATION!,
       PRESSURE: PRESSURE!,
-      PRESSURE_ITERATIONS: PRESSURE_ITERATIONS!,
-      CURL: CURL!,
-      SPLAT_RADIUS: SPLAT_RADIUS!,
-      SPLAT_FORCE: SPLAT_FORCE!,
-      SHADING: effectiveShading,
-      COLOR_UPDATE_SPEED: COLOR_UPDATE_SPEED!,
+      PRESSURE_ITERATIONS: isMidRange ? Math.floor(PRESSURE_ITERATIONS! / 1.5) : PRESSURE_ITERATIONS!,
+      CURL: isMidRange ? CURL! * 0.7 : CURL!,
+      SPLAT_RADIUS: isMidRange ? SPLAT_RADIUS! * 0.8 : SPLAT_RADIUS!,
+      SPLAT_FORCE: isMidRange ? SPLAT_FORCE! * 0.7 : SPLAT_FORCE!,
+      SHADING: isMidRange ? false : effectiveShading,
+      COLOR_UPDATE_SPEED: isMidRange ? COLOR_UPDATE_SPEED! / 2 : COLOR_UPDATE_SPEED!,
       PAUSED: false,
       BACK_COLOR,
       TRANSPARENT,

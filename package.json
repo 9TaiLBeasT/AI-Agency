@@ -16,6 +16,7 @@
     "test:browser": "vite preview --open src/tests/comprehensive-test-suite.html"
   },
   "dependencies": {
+    "@google-cloud/local-auth": "^3.0.1",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
@@ -54,6 +55,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^11.5.4",
+    "googleapis": "^159.0.0",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.446.0",
     "motion": "^12.23.12",
