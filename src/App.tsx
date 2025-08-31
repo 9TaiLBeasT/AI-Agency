@@ -1,5 +1,6 @@
 
 import { lazy, Suspense } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import AnimeNavBarDemo from './components/ui/anime-navbar';
 import { RivRangHero } from './components/ui/rivrang-hero';
 import Services from './components/Services';
@@ -8,6 +9,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { BackgroundArtisticEnhancements } from './components/ui/artistic-enhancements';
+import LocalSEOManager from './components/LocalSEOManager';
 import './App.css';
 
 // Lazy load heavy components
@@ -16,9 +18,18 @@ const SplashCursor = lazy(() => import('./components/ui/SplashCursor'));
 function App() {
 
   return (
-    <>
+    <HelmetProvider>
       {/* Main Website */}
         <div className="min-h-screen bg-rivrang-cream w-full overflow-x-hidden relative">
+        {/* Local SEO Meta Tags and Structured Data */}
+        <LocalSEOManager 
+          currentPage="home"
+          pageTitle="Creative Digital Agency"
+          pageDescription="Professional digital agency services in Hyderabad. Video editing, graphic design, web development, and social media marketing. Call +91-8639050061 for a free consultation."
+          pageKeywords={['digital agency Hyderabad', 'web design Gachibowli', 'graphic design Telangana']}
+          napVariant="full"
+        />
+
         {/* Splash Cursor Effect */}
         <Suspense fallback={null}>
           <SplashCursor
@@ -66,7 +77,7 @@ function App() {
         {/* Footer */}
         <Footer />
         </div>
-    </>
+    </HelmetProvider>
   );
 }
 

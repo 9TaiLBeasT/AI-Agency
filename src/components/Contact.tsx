@@ -4,6 +4,9 @@ import { Mail, Phone, Send, Palette, Briefcase, Users, CheckCircle, AlertCircle 
 import { GradientButton } from './ui/gradient-button';
 import { SectionArtisticEnhancements } from './ui/artistic-enhancements';
 import { submitToGoogleSheets } from '../utils/google-sheets-api';
+import NAP from './NAP';
+import LocalSEOManager from './LocalSEOManager';
+import { businessData } from '../data/business-data';
 
 const Contact = () => {
   const { scrollY } = useScroll();
@@ -46,6 +49,15 @@ const Contact = () => {
       href: "https://wa.me/917842329947"
     }
   ];
+
+  const napData = {
+    businessName: businessData.name,
+    address: businessData.address,
+    phone: businessData.phone,
+    email: businessData.email,
+    website: businessData.website,
+    openingHours: businessData.openingHours
+  };
 
   const projectTypes = [
     { value: 'video-editing', label: 'Video Editing', icon: Palette },
@@ -147,6 +159,15 @@ const Contact = () => {
       style={{ y, opacity }}
       className="py-20 bg-rivrang-cream w-full relative"
     >
+      {/* Local SEO for Contact Page */}
+      <LocalSEOManager 
+        currentPage="contact"
+        pageTitle="Contact Us"
+        pageDescription={`Contact ${businessData.name} in ${businessData.address.addressLocality} for professional digital services. Call ${businessData.phone} or visit our office at ${businessData.address.formatted}.`}
+        pageKeywords={['contact digital agency Hyderabad', 'RivRang contact', 'digital agency Gachibowli contact']}
+        napVariant="contact"
+      />
+
       {/* Artistic enhancements for this section */}
       <SectionArtisticEnhancements />
       
@@ -159,10 +180,10 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-rivrang-text-primary mb-4" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-            Let's Create Your <span className="bg-gradient-to-r from-rivrang-mint-dark via-rivrang-sky-dark to-rivrang-blush-warm bg-clip-text text-transparent">Flow of Art</span>
+            Contact {businessData.name} in <span className="bg-gradient-to-r from-rivrang-mint-dark via-rivrang-sky-dark to-rivrang-blush-warm bg-clip-text text-transparent">{businessData.address.addressLocality}</span>
           </h2>
           <p className="text-xl text-rivrang-text-secondary max-w-3xl mx-auto" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-            Ready to transform your brand vision into reality? Share your creative brief with us and let's craft something extraordinary that flows with your unique story.
+            Ready to transform your brand vision into reality? Visit our {businessData.address.addressLocality} office or get in touch with our local team. We're here to help your business grow in {businessData.address.addressRegion}.
           </p>
         </motion.div>
 
@@ -174,45 +195,28 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <div>
-              <h3 className="text-2xl font-semibold text-rivrang-text-primary mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Contact Information</h3>
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => {
-                const Icon = info.icon;
-                return (
-                  <div key={index} className="flex items-center space-x-4 group">
-                    <div className="w-12 h-12 bg-rivrang-mint/20 rounded-lg flex items-center justify-center group-hover:bg-rivrang-mint/30 transition-colors duration-300">
-                      <Icon className="w-6 h-6 text-rivrang-mint-dark" />
-                    </div>
-                    <div>
-                      <p className="text-rivrang-text-muted text-sm">{info.label}</p>
-                      <a
-                        href={info.href}
-                        className="text-rivrang-text-primary hover:text-rivrang-mint-dark transition-colors duration-300"
-                      >
-                        {info.value}
-                      </a>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            </div>
+            {/* NAP Information with Local Business Details */}
+            <NAP 
+              data={napData}
+              variant="contact"
+              showSchema={true}
+              className="space-y-6"
+            />
 
             <div className="bg-white/80 backdrop-blur-sm rounded-xl p-8 border border-rivrang-mint/30 shadow-sm">
-              <h4 className="text-xl font-semibold text-rivrang-text-primary mb-4" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Why Choose Us</h4>
+              <h4 className="text-xl font-semibold text-rivrang-text-primary mb-4" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Why Choose Local {businessData.address.addressLocality} Agency</h4>
               <ul className="space-y-3 text-rivrang-text-secondary">
                 <li className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-rivrang-mint-dark rounded-full"></div>
-                  <span>Quick turnaround times for busy business owners</span>
+                  <span>Local {businessData.address.addressLocality} team with deep market knowledge</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-rivrang-sky-dark rounded-full"></div>
-                  <span>Affordable packages designed for small businesses</span>
+                  <span>Trusted by 200+ {businessData.address.addressLocality} businesses</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-rivrang-blush-warm rounded-full"></div>
-                  <span>Simple process with minimal time commitment from you</span>
+                  <span>Same-day response for {businessData.address.addressLocality} clients</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-rivrang-lavender rounded-full"></div>

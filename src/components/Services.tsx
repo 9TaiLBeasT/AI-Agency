@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Palette, Code, Megaphone, Camera } from 'lucide-react';
 import { PinContainer } from './ui/3d-pin';
 import { SectionArtisticEnhancements } from './ui/artistic-enhancements';
+import LocalSEOManager from './LocalSEOManager';
+import { businessData } from '../data/business-data';
 
 const Services = () => {
   const { scrollY } = useScroll();
@@ -81,6 +83,20 @@ const Services = () => {
       style={{ y, opacity }}
       className="py-20 bg-rivrang-cream w-full relative"
     >
+      {/* Local SEO for Services Page */}
+      <LocalSEOManager 
+        currentPage="services"
+        pageTitle="Digital Services"
+        pageDescription={`Professional digital services in ${businessData.address.addressLocality}. Video editing, graphic design, web development, and social media marketing for ${businessData.address.addressRegion} businesses.`}
+        pageKeywords={[
+          `video editing services ${businessData.address.addressLocality}`,
+          `graphic design ${businessData.address.addressLocality}`,
+          `web development ${businessData.address.addressRegion}`,
+          `social media marketing ${businessData.address.addressLocality}`
+        ]}
+        napVariant="compact"
+      />
+
       {/* Artistic enhancements for this section */}
       <SectionArtisticEnhancements />
       
@@ -93,7 +109,7 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-rivrang-text-primary mb-4">
-            Our Services{' '}
+            {businessData.address.addressLocality} Digital Services{' '}
             <span className="text-transparent bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text">
               (Ganesh Chaturthi Special)
             </span>
@@ -112,7 +128,7 @@ const Services = () => {
           </motion.div>
           
           <p className="text-xl text-rivrang-text-secondary max-w-3xl mx-auto">
-            Limited time special offers on all our creative services! Get professional quality work at discounted prices.{' '}
+            Limited time special offers on all our creative services for {businessData.address.addressLocality} businesses! Get professional quality work at discounted prices.{' '}
             <span className="font-semibold text-orange-600">Valid until September 7th.</span>
           </p>
         </motion.div>

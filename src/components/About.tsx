@@ -3,6 +3,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { GradientButton } from './ui/gradient-button';
 import { TiltedScroll } from './ui/tilted-scroll';
 import { SectionArtisticEnhancements } from './ui/artistic-enhancements';
+import LocalSEOManager from './LocalSEOManager';
+import { businessData } from '../data/business-data';
 
 const About = () => {
   const { scrollY } = useScroll();
@@ -25,6 +27,20 @@ const About = () => {
       style={{ y, opacity }}
       className="py-20 w-full relative"
     >
+      {/* Local SEO for About Page */}
+      <LocalSEOManager 
+        currentPage="about"
+        pageTitle="About Our Agency"
+        pageDescription={`Learn about ${businessData.name}, a leading creative digital agency in ${businessData.address.addressLocality}, ${businessData.address.addressRegion}. Founded in ${businessData.foundedYear}, we specialize in artistic digital solutions.`}
+        pageKeywords={[
+          `about ${businessData.name}`,
+          `digital agency ${businessData.address.addressLocality}`,
+          {businessData.address.addressLocality}'s Premier <span className="text-rivrang-lavender-dark">Creative Agency</span>
+          `${businessData.address.addressLocality} web design company`
+        ]}
+          At {businessData.name}, we're proud to serve the {businessData.address.addressLocality} business community with exceptional digital services. 
+          Since {businessData.foundedYear}, our "Flow of Art" philosophy has guided every project, helping local businesses in {businessData.address.addressRegion} 
+          create digital experiences that drive real results.
       {/* Artistic enhancements for this section */}
       <SectionArtisticEnhancements />
       
@@ -54,41 +70,41 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             <p className="text-xl text-rivrang-text-secondary mb-8 leading-relaxed" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-              At RivRang, we believe in the transformative power of creative design. Our philosophy of "Flow of Art" 
-              guides every project we undertake, blending artistic vision with strategic thinking to create digital 
-              experiences that don't just look beautiful, but drive meaningful results for your business.
+              Located in the heart of {businessData.address.addressLocality}'s tech hub, {businessData.name} combines global design standards 
+              with deep local market knowledge. We understand what works for {businessData.address.addressLocality} businesses and create 
+              digital solutions that resonate with local customers while maintaining international quality standards.
             </p>
             
             <div className="bg-white/80 rounded-lg p-6 mb-8 border border-rivrang-mint/30 shadow-sm">
               <h3 className="text-xl font-semibold text-rivrang-text-primary mb-4 flex items-center" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
                 <span className="w-3 h-3 bg-gradient-to-r from-rivrang-lavender-dark to-rivrang-sky-dark rounded-full mr-3"></span>
-                Our Design Philosophy
+                Why Choose Local {businessData.address.addressLocality} Expertise
               </h3>
               <p className="text-rivrang-text-secondary leading-relaxed" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-                "Flow of Art" represents our belief that great design should move like water—fluid, natural, and purposeful. 
-                We don't just create static visuals; we craft experiences that flow seamlessly from concept to execution, 
-                ensuring every element serves both aesthetic beauty and functional purpose. This philosophy drives us to 
-                create digital solutions that feel organic, intuitive, and deeply connected to your brand's essence.
+                Being based in {businessData.address.addressLocality} gives us unique insights into the local market dynamics, customer preferences, 
+                and business challenges. Our "Flow of Art" philosophy, combined with {businessData.foundedYear - 2020 + 5} years of local experience, 
+                helps us create digital solutions that not only look beautiful but also connect with {businessData.address.addressRegion} audiences 
+                and drive measurable business growth for our clients.
               </p>
             </div>
             
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-rivrang-lavender-dark rounded-full"></div>
-                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Founded by creative visionaries and design experts</span>
+                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Established in {businessData.address.addressLocality} since {businessData.foundedYear}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-rivrang-sky-dark rounded-full"></div>
-                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Trusted by brands seeking creative excellence</span>
+                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Trusted by 200+ {businessData.address.addressLocality} businesses</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-rivrang-blush-warm rounded-full"></div>
-                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Dedicated to artistic flow and creative innovation</span>
+                <span className="text-rivrang-text-secondary" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Local support team available in {businessData.address.addressRegion}</span>
               </div>
             </div>
 
             <GradientButton className="px-8 py-3">
-              Learn More About Us
+              Visit Our {businessData.address.addressLocality} Office
             </GradientButton>
           </motion.div>
 
@@ -117,7 +133,7 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-rivrang-cream/50 to-transparent rounded-xl" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-rivrang-text-primary font-semibold text-lg" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Our Creative Team</p>
-                <p className="text-rivrang-text-secondary text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Bringing artistic vision to life</p>
+                <p className="text-rivrang-text-secondary text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Based in {businessData.address.addressLocality}, serving {businessData.address.addressRegion}</p>
               </div>
             </div>
           </motion.div>
