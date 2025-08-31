@@ -57,7 +57,7 @@ export default defineConfig({
         target: 'https://script.google.com',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => {
+        rewrite: (_path) => {
           // Hardcoded script ID from .env file
           return '/macros/s/AKfycbx3RLqGgmXw_ObMSKxvMtHzUqiTaiZWDnOIiZ8cwMmERDpGZscZJRTNUIfmwKgwch6X/exec';
         },
@@ -65,7 +65,7 @@ export default defineConfig({
           proxy.on('error', (err, _req, _res) => {
             console.log('proxy error', err);
           });
-          proxy.on('proxyReq', (proxyReq, req, _res) => {
+          proxy.on('proxyReq', (_proxyReq, req, _res) => {
             console.log('Sending Request to the Target:', req.method, req.url);
           });
           proxy.on('proxyRes', (proxyRes, req, _res) => {

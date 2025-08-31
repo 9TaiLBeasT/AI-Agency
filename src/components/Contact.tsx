@@ -85,8 +85,14 @@ const Contact = () => {
     try {
       console.log('Submitting form data:', formData);
       
+      // Convert formData to match Record<string, string> type
+      const formDataForSubmission: Record<string, string> = {
+        ...formData,
+        consultation: formData.consultation.toString() // Convert boolean to string
+      };
+      
       // Submit form data to Google Sheets
-      const response = await submitToGoogleSheets(formData);
+      const response = await submitToGoogleSheets(formDataForSubmission);
       
       console.log('Form submitted successfully:', response);
       

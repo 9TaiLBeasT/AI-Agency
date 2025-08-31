@@ -10,23 +10,23 @@ export const initLazyLoadFallback = () => {
   const lazyImages = Array.from(document.querySelectorAll<HTMLImageElement>('img[data-src]'));
   const lazyIframes = Array.from(document.querySelectorAll<HTMLIFrameElement>('iframe[data-src]'));
   
-  const lazyLoadObserver = new IntersectionObserver((entries) => {
+  const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const lazyElement = entry.target as HTMLImageElement | HTMLIFrameElement;
         
-        if (lazyElement.dataset.src) {
+        if (lazyElement.dataset?.src) {
           lazyElement.src = lazyElement.dataset.src;
           delete lazyElement.dataset.src;
         }
         
         // Handle srcset for images
-        if ('srcset' in lazyElement && lazyElement.dataset.srcset) {
-          (lazyElement as HTMLImageElement).srcset = lazyElement.dataset.srcset;
+        if (lazyElement instanceof HTMLImageElement && lazyElement.dataset?.srcset) {
+          lazyElement.srcset = lazyElement.dataset.srcset;
           delete lazyElement.dataset.srcset;
         }
         
-        lazyLoadObserver.unobserve(lazyElement);
+        observer.unobserve(lazyElement);
       }
     });
   }, {
@@ -49,13 +49,13 @@ const loadAllImagesImmediately = () => {
   const lazyElements = Array.from(document.querySelectorAll<HTMLImageElement | HTMLIFrameElement>('img[data-src], iframe[data-src]'));
   
   lazyElements.forEach(element => {
-    if (element.dataset.src) {
+    if (element.dataset?.src) {
       element.src = element.dataset.src;
       delete element.dataset.src;
     }
     
-    if ('srcset' in element.dataset && element.dataset.srcset) {
-      const srcsetValue = element.dataset.srcset || '';
+    if (element.dataset?.srcset) {
+      const srcsetValue = element.dataset.srcset;
       if (element instanceof HTMLImageElement) {
         element.srcset = srcsetValue;
       } else {
