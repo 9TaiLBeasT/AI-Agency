@@ -7,21 +7,22 @@ export const initLazyLoadFallback = () => {
     return;
   }
 
-  const lazyImages = [].slice.call(document.querySelectorAll('img[data-src]'));
-  const lazyIframes = [].slice.call(document.querySelectorAll('iframe[data-src]'));
+  const lazyImages = Array.from(document.querySelectorAll<HTMLImageElement>('img[data-src]'));
+  const lazyIframes = Array.from(document.querySelectorAll<HTMLIFrameElement>('iframe[data-src]'));
   
-  const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+  const lazyLoadObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const lazyElement = entry.target;
+        const lazyElement = entry.target as HTMLImageElement | HTMLIFrameElement;
         
         if (lazyElement.dataset.src) {
           lazyElement.src = lazyElement.dataset.src;
           delete lazyElement.dataset.src;
         }
         
-        if (lazyElement.dataset.srcset) {
-          lazyElement.srcset = lazyElement.dataset.srcset;
+        // Handle srcset for images
+        if ('srcset' in lazyElement && lazyElement.dataset.srcset) {
+          (lazyElement as HTMLImageElement).srcset = lazyElement.dataset.srcset;
           delete lazyElement.dataset.srcset;
         }
         
@@ -45,7 +46,7 @@ export const initLazyLoadFallback = () => {
 
 // Fallback for very old browsers
 const loadAllImagesImmediately = () => {
-  const lazyElements = document.querySelectorAll('img[data-src], iframe[data-src]');
+  const lazyElements = Array.from(document.querySelectorAll<HTMLImageElement | HTMLIFrameElement>('img[data-src], iframe[data-src]'));
   
   lazyElements.forEach(element => {
     if (element.dataset.src) {
@@ -53,8 +54,13 @@ const loadAllImagesImmediately = () => {
       delete element.dataset.src;
     }
     
-    if ('srcset' in element.dataset) {
-      element.setAttribute('srcset', element.dataset.srcset);
+    if ('srcset' in element.dataset && element.dataset.srcset) {
+      const srcsetValue = element.dataset.srcset || '';
+      if (element instanceof HTMLImageElement) {
+        element.srcset = srcsetValue;
+      } else {
+        element.setAttribute('srcset', srcsetValue);
+      }
       delete element.dataset.srcset;
     }
   });

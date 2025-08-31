@@ -83,8 +83,12 @@ const Contact = () => {
     });
     
     try {
+      console.log('Submitting form data:', formData);
+      
       // Submit form data to Google Sheets
       const response = await submitToGoogleSheets(formData);
+      
+      console.log('Form submitted successfully:', response);
       
       // Handle successful submission
       setFormStatus({
@@ -104,18 +108,31 @@ const Contact = () => {
         message: '',
         consultation: false
       });
-      
-      console.log('Form submitted successfully:', response);
     } catch (error) {
       // Handle submission error
+      console.error('Form submission error:', error);
+      
+      let errorMessage = 'An unknown error occurred';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+        
+        // Check for specific error patterns
+        if (error.message.includes('500')) {
+          errorMessage = 'Server error: The form submission service is currently unavailable. Please try again later or contact us directly.';
+        } else if (error.message.includes('CORS')) {
+          errorMessage = 'Cross-origin request blocked: Please try again or contact us directly via email.';
+        } else if (error.message.includes('network')) {
+          errorMessage = 'Network error: Please check your internet connection and try again.';
+        }
+      }
+      
       setFormStatus({
         submitting: false,
         submitted: true,
         success: false,
-        error: error instanceof Error ? error.message : 'An unknown error occurred'
+        error: errorMessage
       });
-      
-      console.error('Form submission error:', error);
     }
   };
 

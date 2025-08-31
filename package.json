@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "server": "node server.js",
     "test": "node src/tests/run-tests.js",
     "test:color": "node src/tests/run-tests.js --color-only",
     "test:animation": "node src/tests/run-tests.js --animation-only",

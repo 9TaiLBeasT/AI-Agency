@@ -50,18 +50,26 @@ function doPost(e) {
       data.consultation ? 'Yes' : 'No'
     ]);
     
-    // Return success response
+    // Return success response with CORS headers
     return ContentService.createTextOutput(JSON.stringify({
       result: 'success',
       message: 'Form data successfully recorded'
-    })).setMimeType(ContentService.MimeType.JSON);
+    }))
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeader('Access-Control-Allow-Origin', '*')
+    .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .setHeader('Access-Control-Allow-Headers', 'Content-Type');
     
   } catch (error) {
-    // Return error response
+    // Return error response with CORS headers
     return ContentService.createTextOutput(JSON.stringify({
       result: 'error',
       message: error.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
+    }))
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeader('Access-Control-Allow-Origin', '*')
+    .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .setHeader('Access-Control-Allow-Headers', 'Content-Type');
   }
 }
 
@@ -70,5 +78,19 @@ function doGet() {
   return ContentService.createTextOutput(JSON.stringify({
     result: 'success',
     message: 'The web app is running correctly. Use POST to submit data.'
-  })).setMimeType(ContentService.MimeType.JSON);
+  }))
+  .setMimeType(ContentService.MimeType.JSON)
+  .setHeader('Access-Control-Allow-Origin', '*')
+  .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+  .setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
+// This function handles OPTIONS requests (for CORS preflight)
+function doOptions() {
+  return ContentService.createTextOutput('')
+  .setMimeType(ContentService.MimeType.TEXT)
+  .setHeader('Access-Control-Allow-Origin', '*')
+  .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+  .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  .setHeader('Access-Control-Max-Age', '3600');
 }
