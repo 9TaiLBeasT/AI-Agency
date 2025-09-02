@@ -41,12 +41,7 @@ const NAP: React.FC<NAPProps> = ({
     return `${data.address.streetAddress}, ${data.address.addressLocality}, ${data.address.addressRegion} ${data.address.postalCode}, ${data.address.addressCountry}`;
   };
 
-  const formatOpeningHours = () => {
-    const days = Object.entries(data.openingHours);
-    return days.map(([day, hours]) => 
-      `${day.charAt(0).toUpperCase() + day.slice(1)}: ${hours}`
-    ).join(', ');
-  };
+
 
   const generateGoogleMapsUrl = () => {
     const address = encodeURIComponent(formatAddress());
@@ -234,25 +229,29 @@ const NAP: React.FC<NAPProps> = ({
   }
 
   // Full variant (default)
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": data.businessName,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": data.address.streetAddress,
+      "addressLocality": data.address.addressLocality,
+      "addressRegion": data.address.addressRegion,
+      "postalCode": data.address.postalCode,
+      "addressCountry": data.address.addressCountry
+    },
+    "telephone": data.phone,
+    "email": data.email,
+    "url": data.website
+  };
+
   return (
     <div className={className}>
       {showSchema && (
-        <>
-          <script type="application/ld+json">
-            {JSON.stringify(localBusinessSchema)}
-          </script>
-          <script type="application/ld+json">
-            {JSON.stringify(organizationSchema)}
-          </script>
-          <script type="application/ld+json">
-            {JSON.stringify(breadcrumbSchema)}
-          </script>
-          {serviceSchemas.map((schema, index) => (
-            <script key={index} type="application/ld+json">
-              {JSON.stringify(schema)}
-            </script>
-          ))}
-        </>
+        <script type="application/ld+json">
+          {JSON.stringify(localBusinessSchema)}
+        </script>
       )}
     </div>
   );

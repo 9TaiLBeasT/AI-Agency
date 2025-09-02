@@ -12,7 +12,6 @@ interface UseLocalSEOOptions {
 export const useLocalSEO = ({
   pageTitle,
   pageDescription,
-  pageKeywords = [],
   currentPage = 'home',
   trackPageView = true
 }: UseLocalSEOOptions = {}) => {
@@ -33,8 +32,8 @@ export const useLocalSEO = ({
     }
 
     // Track page view for local analytics
-    if (trackPageView && typeof gtag !== 'undefined') {
-      gtag('config', 'GA_MEASUREMENT_ID', {
+    if (trackPageView && typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('config', 'GA_MEASUREMENT_ID', {
         page_title: pageTitle,
         page_location: window.location.href,
         custom_map: {
@@ -116,7 +115,7 @@ export const useLocalSEO = ({
       }
     };
 
-    return { ...baseStructuredData, ...additionalData };
+    return baseStructuredData;
   };
 
   return {

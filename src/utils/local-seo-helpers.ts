@@ -230,7 +230,7 @@ export const generateLocalContent = (contentType: 'hero' | 'service' | 'testimon
 };
 
 // Schema.org Markup Generators
-export const generateLocalBusinessMarkup = (pageType: string, additionalData: Record<string, any> = {}) => {
+export const generateLocalBusinessMarkup = (additionalData: Record<string, any> = {}) => {
   const baseMarkup = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
