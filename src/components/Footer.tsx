@@ -22,16 +22,13 @@ const Footer = () => {
               Where creativity flows into exceptional digital experiences. We craft stunning brand identities, websites, and creative campaigns that bring your vision to life.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-rivrang-text-muted hover:text-rivrang-mint-dark transition duration-300">
-                <Twitter size={24} />
-              </a>
-              <a href="#" className="text-rivrang-text-muted hover:text-rivrang-mint-dark transition duration-300">
-                <Linkedin size={24} />
-              </a>
-              <a href="#" className="text-rivrang-text-muted hover:text-rivrang-mint-dark transition duration-300">
+              <a href="https://www.instagram.com/_rivrang_?igsh=djNza2txcThqemVn" target="_blank" rel="noopener noreferrer" className="text-rivrang-text-muted hover:text-rivrang-mint-dark transition duration-300">
                 <Instagram size={24} />
               </a>
-              <a href="#" className="text-rivrang-text-muted hover:text-rivrang-mint-dark transition duration-300">
+              <a href="https://www.linkedin.com/posts/rivrang_rivrang-flowofart-digitalagency-activity-7369383716588056576-z5Zy?utm_source=share&utm_medium=member_desktop&rcm=ACoAADIyEHcBzb3NYvushAbOQfbaGf3AhhjAjsg" target="_blank" rel="noopener noreferrer" className="text-rivrang-text-muted hover:text-rivrang-mint-dark transition duration-300">
+                <Linkedin size={24} />
+              </a>
+              <a href="mailto:rivrang.agency@gmail.com" className="text-rivrang-text-muted hover:text-rivrang-mint-dark transition duration-300">
                 <Mail size={24} />
               </a>
             </div>
