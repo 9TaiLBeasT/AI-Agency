@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Palette, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Palette, Linkedin, Instagram, Mail } from 'lucide-react';
 
 const Footer = () => {
   const { scrollY } = useScroll();
